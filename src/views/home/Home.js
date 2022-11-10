@@ -1,11 +1,13 @@
-import '../../App.css';
 import './Home.css';
 import Logo from '../../constants/Logo.js';
 import Feature from '../../components/feature/Feature';
+import {firebaseConfig} from '../../api/firebaseConfig'
 
-function App() {
-  return (
-    
+function cerrarSesion(){
+  firebaseConfig.auth().signOut();
+}
+function Home() {
+  return (  
     <div className='home'>
       <Logo />
       <div className='homeText'>
@@ -35,8 +37,11 @@ function App() {
           image='steam.png'/>
           
       </div>
+      <div>
+        <button onClick={cerrarSesion}>cerrar sesion</button>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Home;
