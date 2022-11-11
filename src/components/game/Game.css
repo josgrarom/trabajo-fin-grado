@@ -1,0 +1,28 @@
+.gameContainer{
+  padding: 10px;
+  height: 300px;
+  width: 200px;
+}
+
+.gameName{
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.gameImg{
+  height: 100px;
+  width: auto;
+}
+
+.gameStatisticsContainer{
+  
+  width: 200px;
+  border-color: gray;
+  border-width: 1px;
+  border-style: dotted;
+}
+
+.gameStatistics{
+  text-align: left;
+
+}

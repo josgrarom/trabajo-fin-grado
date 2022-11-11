@@ -4,9 +4,9 @@ function Feature(props){
   return (
     <div className='featureContainer'>
       <img
-      className='featureImg'
-      src={require(`/src/images/feature/${props.image}`)}
-      alt=''
+        className='featureImg'
+        src={require(`/src/images/feature/${props.image}`)}
+        alt=''
       />
       
       <div className='featureText'>

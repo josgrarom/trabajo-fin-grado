@@ -1,8 +1,9 @@
 import './App.css';
 import Home from './views/home/Home';
 import {firebaseConfig} from './api/firebaseConfig'
-import Logueo from './Logueo'
+import Login from './views/login/Login'
 import React,{useEffect} from "react";
+import AuthenticatedHome from './views/authenticatedHome/AuthenticatedHome';
 function App() {
   const[usuario,setUsuario] = React.useState(null);
   useEffect( ()=>{
@@ -11,7 +12,7 @@ function App() {
       setUsuario(usuarioFirebase);
     })
   },[])
-  return <>{usuario ? <Home/> : <Logueo setUsuario={setUsuario}/>}</>;
+  return <>{usuario ? <AuthenticatedHome/> : <Login setUsuario={setUsuario}/>}</>;
  
 }
 

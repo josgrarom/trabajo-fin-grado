@@ -19,3 +19,11 @@ body {
   text-align: center;
 }
 
+.authenticatedHome {
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+

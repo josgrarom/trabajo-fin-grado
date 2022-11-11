@@ -1,0 +1,12 @@
+.gamesContainer{
+  margin-top: 25px;
+  min-height: 300px;
+  margin-inline: 70px;
+  
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 13px 1px rgb(0 0 0 / 9%);
+}
+
+
