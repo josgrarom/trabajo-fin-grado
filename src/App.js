@@ -4,15 +4,17 @@ import {firebaseConfig} from './api/firebaseConfig'
 import Login from './views/login/Login'
 import React,{useEffect} from "react";
 import AuthenticatedHome from './views/authenticatedHome/AuthenticatedHome';
+
 function App() {
-  const[usuario,setUsuario] = React.useState(null);
+  const[user,setUser] = React.useState(null);
+  
   useEffect( ()=>{
-    firebaseConfig.auth().onAuthStateChanged((usuarioFirebase)=>{
-      console.log("ya tienes sesión iniciada con:",usuarioFirebase);
-      setUsuario(usuarioFirebase);
+    firebaseConfig.auth().onAuthStateChanged((firebaseUser)=>{
+      console.log("ya tienes sesión iniciada con:",firebaseUser);
+      setUser(firebaseUser);
     })
   },[])
-  return <>{usuario ? <AuthenticatedHome/> : <Login setUsuario={setUsuario}/>}</>;
+  return <>{user ? <AuthenticatedHome/> : <Login setUser={setUser}/>}</>;
  
 }
 

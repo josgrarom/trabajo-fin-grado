@@ -23,7 +23,7 @@ function Login(props) {
       .auth()
       .signInWithEmailAndPassword(email,password)
       .then((firebaseUser)=>{
-        console.log("usuario creado:",firebaseUser);
+        console.log("usuario logueado:",firebaseUser.credential);
         props.setUser(firebaseUser);
       })
     );

@@ -1,11 +1,8 @@
 import './Home.css';
 import Logo from '../../constants/Logo.js';
 import Feature from '../../components/feature/Feature';
-import {firebaseConfig} from '../../api/firebaseConfig'
+import SignOut from '../../components/signOut/SignOut';
 
-function cerrarSesion(){
-  firebaseConfig.auth().signOut();
-}
 function Home() {
   return (  
     <div className='home'>
@@ -37,9 +34,7 @@ function Home() {
           image='steam.png'/>
           
       </div>
-      <div>
-        <button onClick={cerrarSesion}>cerrar sesion</button>
-      </div>
+      <SignOut/>
     </div>
   );
 }
