@@ -4,7 +4,7 @@ import {firebaseConfig} from './api/firebaseConfig'
 import Login from './views/login/Login'
 import React,{useEffect} from "react";
 import AuthenticatedHome from './views/authenticatedHome/AuthenticatedHome';
-
+import PruebaCarga from './components/loadDB/loadDb';
 function App() {
   const[user,setUser] = React.useState(null);
   
