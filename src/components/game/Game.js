@@ -10,6 +10,7 @@ function Game(props){
         alt=''
       /> }
       <p className='gameName'>{props.name}</p>
+      
 {/*       <div className='gameStatisticsContainer'>
         <div className='gameStatistics'>
           <p className='gamePlayers'>Jugadores activos: {props.players}.</p>

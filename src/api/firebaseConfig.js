@@ -1,5 +1,7 @@
+import { getAuth } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
+import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 
 export const firebaseConfig = firebase.initializeApp({
@@ -9,7 +11,10 @@ export const firebaseConfig = firebase.initializeApp({
   storageBucket: "trabajo-fin-grado-4f454.appspot.com",
   messagingSenderId: "861924981875",
   appId: "1:861924981875:web:16ddd26555f416496c7e06",
-  measurementId: "G-GZ46MSNDJ5"
+  measurementId: "G-GZ46MSNDJ5",
+  databaseURL: "https://trabajo-fin-grado-4f454-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
 export const db = getFirestore();
+export const auth = getAuth();
+export const database = getDatabase();

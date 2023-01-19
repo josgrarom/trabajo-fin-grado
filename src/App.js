@@ -1,10 +1,10 @@
 import './App.css';
-import Home from './views/home/Home';
+/* import Home from './views/home/Home'; */
 import {firebaseConfig} from './api/firebaseConfig'
 import Login from './views/login/Login'
 import React,{useEffect} from "react";
 import AuthenticatedHome from './views/authenticatedHome/AuthenticatedHome';
-import PruebaCarga from './components/loadDB/loadDb';
+import SesionTest from './views/authenticatedHome/SesionTest';
 function App() {
   const[user,setUser] = React.useState(null);
   
