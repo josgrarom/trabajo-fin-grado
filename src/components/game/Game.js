@@ -1,26 +1,33 @@
 import React from 'react'
 import './Game.css'
-function Game(props){
-  return (
+import {auth,db} from '../../api/firebaseConfig'
+import { doc,updateDoc,arrayUnion } from "firebase/firestore";
 
+function Game(props){
+  
+  const addGame = async()=>{
+    const user = auth.currentUser;
+    const collectionRef = doc(db, "users/",user.uid);
+    await updateDoc(collectionRef, {
+      username: 'test2',
+      email:user.email,
+      'listas.lista1':arrayUnion(props.idGame)
+    });
+  }
+  
+  return (
     <div className='gameContainer'>
-{       <img
+      {<img
         className='gameImg'
         src={props.image}
         alt=''
-      /> }
+      />}
       <p className='gameName'>{props.name}</p>
-      
-{/*       <div className='gameStatisticsContainer'>
-        <div className='gameStatistics'>
-          <p className='gamePlayers'>Jugadores activos: {props.players}.</p>
-          <p className='gameHours'>Media de horas: {props.hours}.</p>
-          <p className='gameRating'>Puntuación: {props.rating}.</p>
-          <p className='gameReviews'>{props.reviews} reviews registradas.</p>
-        </div>
-      </div> */}
-    </div>
 
+      <button className="button" onClick={addGame}>
+        Añadir juego
+      </button>
+    </div>
   )
 }
 

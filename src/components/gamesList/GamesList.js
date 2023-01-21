@@ -1,7 +1,5 @@
 import './GamesList.css';
-import Logo from '../../constants/Logo.js';
 import Game from '../game/Game';
-import SignOut from '../signOut/SignOut';
 import { db} from '../../api/firebaseConfig';
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { useEffect, useState } from 'react';
@@ -36,7 +34,7 @@ function GamesList() {
             <Game 
             image={item.header_image}
             name={item.name}
-            
+            idGame={item.steam_appid}
             />
           </div>
           )
