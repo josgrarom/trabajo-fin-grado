@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
-import { doc,updateDoc,arrayUnion} from "firebase/firestore";
+import { doc,updateDoc} from "firebase/firestore";
 
 function CreateList(){
   const [newName, setNewName] = useState("");

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Game.css'
 import {auth,db} from '../../api/firebaseConfig'
 import { doc,updateDoc,arrayUnion } from "firebase/firestore";
+import Modal from '../modal/Modal';
+import ShowLists from '../showLists/showLists';
 
 function Game(props){
-  
+  const [modalState,setModalState]= useState(false);
   const addGame = async()=>{
     const user = auth.currentUser;
     const collectionRef = doc(db, "users/",user.uid);
@@ -24,9 +26,14 @@ function Game(props){
       />}
       <p className='gameName'>{props.name}</p>
 
-      <button className="button" onClick={addGame}>
+      <button className="button" onClick={()=> setModalState(!modalState)}>
         Añadir juego
       </button>
+      <Modal state={modalState} changeState={setModalState}>
+        <ShowLists
+        idGame={props.idGame}
+        />
+      </Modal>
     </div>
   )
 }
