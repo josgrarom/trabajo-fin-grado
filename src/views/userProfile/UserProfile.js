@@ -1,13 +1,12 @@
 import React from 'react'
-import ShowLists from '../../components/showLists/showLists';
-
+import UserLists from '../../components/userLists/UserLists';
 
 
 function UserProfile() {
-  
+
   return(
     <div>
-      <ShowLists/>
+      <UserLists/>
     </div>
   )
 }
