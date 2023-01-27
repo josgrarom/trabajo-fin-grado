@@ -2,33 +2,58 @@ import React, { useEffect,useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
-import GamesList from "../gamesList/GamesList";
 import { doc,getDoc } from "firebase/firestore";
-
-function waitTime(ms) { // for adding asyncness to the async function 
-	return new Promise(resolve => setTimeout(resolve,ms)); 
-} 
+import Game from "../game/Game";
 function UserGamesInList(){
   const {name} = useParams()
-  const aux =[747660,1150690]
-  const [q,setq]= useState(null)
+  const [listOfGames,setListOfGames]=useState([]);
 
   const getList= async()=>{
+    const aux =[]
     const user = auth.currentUser;
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
-    setq(query(collection(db, "games"), where('steam_appid','in',docSnap.data().listas[name])))
+    const gamesIds = docSnap.data().listas[name]
+
+    for (let i = 0; i < gamesIds.length; i += 10) {
+      let pedazo = gamesIds.slice(i, i + 10);
+      aux.push(pedazo);
+    }
+
+    const aux2 =[]
+    aux.map(async (item)=>{
+      const q = query(collection(db, "games"), where('steam_appid','in',item))
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        aux2.push(doc.data())
+        setListOfGames(aux2)
+      });
+    })
     
   }
-
   useEffect(()=>{
     getList();
   },[])
   return (
     <div>
-      {q? (
-        <GamesList q={q} /> 
-        ):(<h1></h1>)}
+      
+      <div className='authenticatedHome'> 
+        <div className='searchContainer'>
+          {
+        listOfGames.map((item)=>{
+          return(
+          <div key={item.steam_appid} className='gamesContainer'>
+            <Game 
+            image={item.header_image}
+            name={item.name}
+            idGame={item.steam_appid}
+            />
+          </div>
+          )
+        })}
+        </div>
+      </div>
+      
     </div>
   );
 }
