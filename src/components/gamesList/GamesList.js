@@ -31,6 +31,7 @@ function GamesList({q}) {
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
+            addButton={true}
             />
           </div>
           )

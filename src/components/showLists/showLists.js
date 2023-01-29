@@ -12,7 +12,7 @@ function ShowLists(props) {
     await updateDoc(collectionRef, {
       [`listas.${list}`]:arrayUnion(props.idGame)
     });
-    console.log('juego añadido')
+
   }
   useEffect(()=>{
 

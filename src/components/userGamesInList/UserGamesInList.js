@@ -2,11 +2,22 @@ import React, { useEffect,useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
-import { doc,getDoc } from "firebase/firestore";
+import { doc,getDoc,updateDoc,arrayRemove } from "firebase/firestore";
 import Game from "../game/Game";
 function UserGamesInList(){
   const {name} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
+  const [count,setCount]= useState(0)
+  
+  const deleteGame = async (idGame)=>{
+
+    const user = auth.currentUser;
+    const collectionRef = doc(db, "users/",user.uid);
+    await updateDoc(collectionRef, {
+      [`listas.${name}`]:arrayRemove(idGame)
+    });
+    setCount(count+1)
+  }
 
   const getList= async()=>{
     const aux =[]
@@ -31,9 +42,11 @@ function UserGamesInList(){
     })
     
   }
+
   useEffect(()=>{
     getList();
-  },[])
+
+  },[count])
   return (
     <div>
       
@@ -47,7 +60,14 @@ function UserGamesInList(){
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
+            list={name}
+            deleteButton={true}
+            addButton={false}
             />
+            <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
+              Eliminar juego
+            </button>
+      
           </div>
           )
         })}
