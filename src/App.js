@@ -9,6 +9,8 @@ import Navbar from './components/navBar/NavBar';
 import UserProfile from './views/userProfile/UserProfile';
 import CreateList from './views/createList/CreateList';
 import UserGamesInList from './components/userGamesInList/UserGamesInList';
+import SearchBar from './components/searchBar/SearchBar';
+import GameDetails from './components/gameDetails/GameDetails';
 function App() {
   const[user,setUser] = React.useState(null);
   
@@ -26,7 +28,9 @@ function App() {
         <Route exact path='/'  element={user ? <AuthenticatedHome/> : <Home />}/>
         <Route exact path='/user-profile' element={<UserProfile/>}/>
         <Route exact path='/aux' element={<CreateList/>}/>
+        <Route exact path='/about' element={<SearchBar/>}/>
         <Route exact path='/list/:name' element={<UserGamesInList/>}/>
+        <Route exact path='/game/:id' element={<GameDetails/>}/>
         <Route exact path='/sign-up' element={<Login setUser={setUser}/>}/>
       </Routes>
   </Router>

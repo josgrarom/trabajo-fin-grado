@@ -6,7 +6,6 @@ import SignOut from '../../components/signOut/SignOut';
 function Home() {
   return (  
     <div className='home'>
-      <Logo />
       <div className='homeText'>
         <h1 className='homeTitle'>¡Bienvenido a myGameshdb!</h1>
         <p className='homeDescription'>Descripción en proceso</p>

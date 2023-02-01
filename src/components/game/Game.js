@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './Game.css'
 import Modal from '../modal/Modal';
 import ShowLists from '../showLists/showLists';
-import { doc,updateDoc,arrayRemove } from "firebase/firestore";
-import {auth,db} from '../../api/firebaseConfig'
+import { Link } from 'react-router-dom';
 function Game(props){
   const [modalState,setModalState]= useState(false);
   
 
   return (
+    <Link to={`/game/${props.idGame}`}>
     <div className='gameContainer'>
       {<img
         className='gameImg'
@@ -28,6 +28,7 @@ function Game(props){
         />
       </Modal>
     </div>
+    </Link>
   )
 }
 

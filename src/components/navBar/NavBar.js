@@ -4,13 +4,13 @@ import {   Nav,
   NavMenu,
   NavBtn,
   NavBtnLink } from './NavBarElements';
-
+  import Logo from '../../constants/Logo.js';
 const Navbar = () => {
   return (
     <>
       <Nav>
         <NavLink to='/'>
-          Home
+          <Logo/>
         </NavLink>
    
         <NavMenu>
