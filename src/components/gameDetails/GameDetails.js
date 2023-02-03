@@ -1,19 +1,13 @@
 import React, { useState,useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { doc,getDoc,updateDoc,arrayRemove } from "firebase/firestore";
-import {auth,db} from '../../api/firebaseConfig'
+import {db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
 function GameDetails(){
 
   const {id} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
-console.log(id)
-  const getList= async()=>{
+  const getGame= async()=>{
     const aux =[]
-    const user = auth.currentUser;
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-
     const q = query(collection(db, "games"), where('steam_appid','==',parseInt(id)))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -23,7 +17,7 @@ console.log(id)
   }
 
   useEffect(()=>{
-    getList();
+    getGame();
 
   },[])
   return (

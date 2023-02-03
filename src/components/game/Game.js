@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import './Game.css'
 import Modal from '../modal/Modal';
 import ShowLists from '../showLists/showLists';
@@ -8,14 +8,17 @@ function Game(props){
   
 
   return (
-    <Link to={`/game/${props.idGame}`}>
+    
     <div className='gameContainer'>
+      <Link to={`/game/${props.idGame}`}>
       {<img
         className='gameImg'
         src={props.image}
         alt=''
       />}
+      
       <p className='gameName'>{props.name}</p>
+      </Link>
       {props.addButton&&
       <button className="button" onClick={()=> setModalState(!modalState)}>
         Añadir juego
@@ -28,7 +31,7 @@ function Game(props){
         />
       </Modal>
     </div>
-    </Link>
+
   )
 }
 

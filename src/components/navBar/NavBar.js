@@ -10,20 +10,20 @@ const Navbar = () => {
     <>
       <Nav>
         <NavLink to='/'>
-          <Logo/>
+          Home
         </NavLink>
    
         <NavMenu>
-          <NavLink to='/about' activeStyle>
+          <NavLink to='/about' >
             About
           </NavLink>
-          <NavLink to='/aux' activeStyle>
+          <NavLink to='/aux' >
             Aux
           </NavLink>
-          <NavLink to='/user-profile' activeStyle>
+          <NavLink to='/user-profile' >
             Pefil
           </NavLink>
-          <NavLink to='/sign-up' activeStyle>
+          <NavLink to='/sign-up' >
             Sign Up
           </NavLink>
           {/* Second Nav */}

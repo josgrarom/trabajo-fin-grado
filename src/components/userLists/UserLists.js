@@ -4,6 +4,7 @@ import { getDoc } from "firebase/firestore";
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { doc,updateDoc,deleteField } from "firebase/firestore";
+import { onAuthStateChanged } from 'firebase/auth';
 function UserLists(){
 
   const [lists,setLists] = useState([])
@@ -17,11 +18,18 @@ function UserLists(){
   });
   setCount(count+1)
   }
-  const getlists = async ()=>{
-    const user = auth.currentUser;
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-    setLists(Object.keys(docSnap.data().listas))
+  const getlists =  ()=>{
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const user = auth.currentUser;
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        setLists(Object.keys(docSnap.data().listas))
+      } else {
+
+      }
+    });
+
   }
 
   useEffect(()=>{
