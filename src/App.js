@@ -16,7 +16,6 @@ function App() {
   
   useEffect( ()=>{
     firebaseConfig.auth().onAuthStateChanged((firebaseUser)=>{
-      console.log("ya tienes sesión iniciada con:",firebaseUser);
       setUser(firebaseUser);
     })
   },[])

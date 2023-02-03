@@ -4,6 +4,7 @@ import {auth,db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
 import { doc,getDoc,updateDoc,arrayRemove } from "firebase/firestore";
 import Game from "../game/Game";
+import { onAuthStateChanged } from "firebase/auth";
 function UserGamesInList(){
   const {name} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
@@ -20,27 +21,32 @@ function UserGamesInList(){
   }
 
   const getList= async()=>{
-    const aux =[]
-    const user = auth.currentUser;
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
-    const gamesIds = docSnap.data().listas[name]
-
-    for (let i = 0; i < gamesIds.length; i += 10) {
-      let pedazo = gamesIds.slice(i, i + 10);
-      aux.push(pedazo);
-    }
-
-    const aux2 =[]
-    aux.map(async (item)=>{
-      const q = query(collection(db, "games"), where('steam_appid','in',item))
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        aux2.push(doc.data())
-        setListOfGames(aux2)
-      });
-    })
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const aux =[]
+        const user = auth.currentUser;
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        const gamesIds = docSnap.data().listas[name]
     
+        for (let i = 0; i < gamesIds.length; i += 10) {
+          let pedazo = gamesIds.slice(i, i + 10);
+          aux.push(pedazo);
+        }
+    
+        const aux2 =[]
+        aux.map(async (item)=>{
+          const q = query(collection(db, "games"), where('steam_appid','in',item))
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach((doc) => {
+            aux2.push(doc.data())
+            setListOfGames(aux2)
+          });
+        })
+      } else {
+
+      }
+    });
   }
 
   useEffect(()=>{
