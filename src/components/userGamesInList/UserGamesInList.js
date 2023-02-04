@@ -71,7 +71,7 @@ function UserGamesInList(){
             addButton={false}
             />
             <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
-              Eliminar juego
+              Eliminar review
             </button>
       
           </div>

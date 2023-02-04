@@ -26,9 +26,11 @@ function Game(props){
       }
 
       <Modal state={modalState} changeState={setModalState}>
+      <button className="button" onClick={()=> setModalState(!modalState)}>
         <ShowLists
         idGame={props.idGame}
         />
+        </button>
       </Modal>
     </div>
 

@@ -2,6 +2,8 @@ import React, { useState,useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
+import CreateReview from "../createReview/CreateReview";
+import ShowReviews from "../showReviews/ShowReviews";
 function GameDetails(){
 
   const {id} = useParams()
@@ -29,17 +31,24 @@ function GameDetails(){
         listOfGames.map((item)=>{
           return(
           <div key={item.steam_appid} >
+            <div>
+              <img  src={item.header_image} alt=''/>
+              <p>Nombre ={item.name}</p>
+              <p>Id ={item.steam_appid}</p>
+            </div>
             
-            <img  src={item.header_image} alt=''/>
-            <p>Nombre ={item.name}</p>
-            <p>Id ={item.steam_appid}</p>
-      
+            <div>
+              <CreateReview gameId={item.steam_appid}/>
+            </div>
+            <div>
+              <ShowReviews gameId={item.steam_appid}/>
+            </div>
           </div>
           )
         })}
         </div>
       </div>
-      
+
     </div>
   );
 
