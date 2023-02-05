@@ -4,6 +4,7 @@ import {db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
 import CreateReview from "../createReview/CreateReview";
 import ShowReviews from "../showReviews/ShowReviews";
+import CreateRating from "../createRating/createRating";
 function GameDetails(){
 
   const {id} = useParams()
@@ -13,7 +14,7 @@ function GameDetails(){
     const q = query(collection(db, "games"), where('steam_appid','==',parseInt(id)))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      aux.push(doc.data())
+      aux.push(doc)
       setListOfGames(aux)
     });
   }
@@ -30,19 +31,22 @@ function GameDetails(){
           {
         listOfGames.map((item)=>{
           return(
-          <div key={item.steam_appid} >
+          <div key={item.data().steam_appid} >
             <div>
-              <img  src={item.header_image} alt=''/>
-              <p>Nombre ={item.name}</p>
-              <p>Id ={item.steam_appid}</p>
-            </div>
-            
-            <div>
-              <CreateReview gameId={item.steam_appid}/>
+              <img  src={item.data().header_image} alt=''/>
+              <p>Nombre ={item.data().name}</p>
+              <p>Id ={item.data().steam_appid}</p>
             </div>
             <div>
-              <ShowReviews gameId={item.steam_appid}/>
+              <CreateRating gameId={item.id}/>
             </div>
+            <div>
+              <CreateReview gameId={item.id}/>
+            </div>
+            <div>
+              <ShowReviews gameId={item.id}/>
+            </div>
+
           </div>
           )
         })}

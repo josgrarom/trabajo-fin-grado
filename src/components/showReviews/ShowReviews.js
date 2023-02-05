@@ -7,7 +7,7 @@ function ShowReviews({gameId}) {
   const [count,setCount]= useState(0)
   const loadData = async()=>{
     const aux =[]
-    const q = query(collection(db, "reviews"), where('game','==',parseInt(gameId)))
+    const q = query(collection(db, "reviews"), where('game','==',gameId))
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       aux.push(doc)
