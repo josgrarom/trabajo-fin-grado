@@ -3,9 +3,23 @@ import { TextField } from "@mui/material";
 import GamesList from "../gamesList/GamesList";
 import { collection, query, limit, endAt,startAt, orderBy } from "firebase/firestore";
 import { db} from '../../api/firebaseConfig';
-function SearchBar() {
+import Select from 'react-select'
+function FilterGames() {
   const [inputText, setInputText] = useState("");
-  
+  const [userChoice,setUserChoice] = useState('recommendations');
+  const [userChoice2,setUserChoice2] = useState('desc');
+  const options = [
+    { value: 'recommendations', label: 'Recomendaciones' },
+    { value: 'name', label: 'Nombre' },
+    { value: 'metacritic', label: 'Puntuación en metacritic'},
+    { value: 'release_date.date', label: 'Fecha de lanzamiento'},
+  ]
+
+  const options2 = [
+    { value: 'asc', label: 'Ascendete' },
+    { value: 'desc', label: 'Descendente' },
+  ]
+ 
   let inputHandler = (e) => {
     const arr = e.target.value.split(" ");
 
@@ -16,10 +30,20 @@ function SearchBar() {
   const str2 = arr.join(" ");
     setInputText(str2);
   };
+
+
   const q = query(collection(db, "games"),orderBy('name','asc'),startAt(inputText),endAt(inputText +"\uf8ff"),limit(30));
-  const q2=query(collection(db, "games"), limit(30),orderBy('recommendations','desc'));
+  const q2=query(collection(db, "games"), limit(30),orderBy(userChoice,userChoice2));
   return (
     <div className="main">
+      <Select options={options} 
+        onChange={(choice) => setUserChoice(choice.value)}
+        placeholder={'Recomendaciones'}/>
+        
+      <Select options={options2} 
+        onChange={(choice) => setUserChoice2(choice.value)}
+        placeholder={'Descendente'}/>
+        
       <h1>React Search</h1>
       <div className="search">
         <TextField
@@ -38,4 +62,4 @@ function SearchBar() {
   );
 }
 
-export default SearchBar;
+export default FilterGames;

@@ -11,6 +11,7 @@ function CreateList(){
     await updateDoc(collectionRef, {
       [`listas.${newName}`]:[]
     });
+    window.location.reload(false);
   }
   return(
     <div>

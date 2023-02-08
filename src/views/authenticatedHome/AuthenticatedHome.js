@@ -1,12 +1,10 @@
 import './AuthenticatedHome.css';
-import SignOut from '../../components/signOut/SignOut';
-import SearchBar from '../../components/searchBar/SearchBar';
+import FilterGames from '../../components/filterGames/FilterGames';
 function AuthenticatedHome() {
 
   return (
     <div>
-      <SearchBar/>
-      <SignOut/>
+      <FilterGames/>
     </div>
   );
 }

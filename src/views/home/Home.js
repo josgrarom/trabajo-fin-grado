@@ -1,7 +1,5 @@
 import './Home.css';
-import Logo from '../../constants/Logo.js';
 import Feature from '../../components/feature/Feature';
-import SignOut from '../../components/signOut/SignOut';
 
 function Home() {
   return (  
@@ -33,7 +31,6 @@ function Home() {
           image='steam.png'/>
           
       </div>
-      <SignOut/>
     </div>
   );
 }

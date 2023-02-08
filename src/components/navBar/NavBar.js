@@ -4,8 +4,10 @@ import {   Nav,
   NavMenu,
   NavBtn,
   NavBtnLink } from './NavBarElements';
-  import Logo from '../../constants/Logo.js';
+  import { auth } from '../../api/firebaseConfig';
+import SignOut from '../signOut/SignOut';
 const Navbar = () => {
+  const user = auth.currentUser;
   return (
     <>
       <Nav>
@@ -23,15 +25,18 @@ const Navbar = () => {
           <NavLink to='/user-profile' >
             Pefil
           </NavLink>
-          <NavLink to='/sign-up' >
-            Sign Up
-          </NavLink>
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
+      
+        {!user?(
+        <div>
         <NavBtn>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+          <NavBtnLink to='/sign-in'>Iniciar sesión</NavBtnLink>
         </NavBtn>
+        <NavBtn>
+          <NavBtnLink to='/sign-up'>Registrarse</NavBtnLink>
+        </NavBtn>
+        </div>
+        ):(<NavBtn><SignOut/></NavBtn>)}
       </Nav>
     </>
   );
