@@ -1,7 +1,8 @@
 import React from 'react'
 import CreateList from '../../components/createList/CreateList';
 import UserData from '../../components/userData/UserData';
-import UserLists from '../../components/userLists/UserLists';
+import UserFollows from '../../components/userFollows/UserFollows';
+import UserGamesLists from '../../components/userGamesLists/UserGamesLists';
 
 
 function UserProfile() {
@@ -14,10 +15,14 @@ function UserProfile() {
       </div>
 
       <div>
-        <UserLists/>
+        <UserGamesLists/>
       </div>
       <div>
         <CreateList/>
+      </div>
+      <div>
+        <h1>Follows</h1>
+        <UserFollows/>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import UserLists from '../../components/userLists/UserLists';
+
 import { auth } from '../../api/firebaseConfig';
 
 function UserData() {

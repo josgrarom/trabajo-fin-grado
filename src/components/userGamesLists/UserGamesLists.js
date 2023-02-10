@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { doc,updateDoc,deleteField } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth';
-function UserLists(){
+function UserGamesLists(){
 
   const [lists,setLists] = useState([])
   const [count,setCount]= useState(0)
@@ -61,4 +61,4 @@ function UserLists(){
   )
 
 }
-export default UserLists;
+export default UserGamesLists;
