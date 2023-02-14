@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import {auth,db} from '../../api/firebaseConfig'
 import { arrayRemove, getDoc } from "firebase/firestore";
 import { useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { doc,updateDoc,deleteField } from "firebase/firestore";
+import { doc,updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth';
 function UserFollows(){
 

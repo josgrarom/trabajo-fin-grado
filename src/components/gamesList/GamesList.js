@@ -1,36 +1,75 @@
 import './GamesList.css';
 import Game from '../game/Game';
-import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from 'react';
-
-function GamesList({q}) {
+import { collection, query, limit, where,orderBy,getDocs, startAfter } from "firebase/firestore";
+import { db} from '../../api/firebaseConfig';
+function GamesList({input,userC,userC2}) {
   const [listOfGamaes,setListOfGames]=useState([]);
+  const [lastDoc,setLastDoc]=useState();
 
   const loadData = async()=>{
     const aux =[]
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      aux.push(doc.data())
+    if(input===''){
+      const q=query(collection(db, "games"), limit(30),orderBy(userC,userC2));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        aux.push(doc)
+      });
       setListOfGames(aux)
-    });
+      const lastDo=aux[aux.length -1]
+      setLastDoc(lastDo)
+    }else{
+      const q = query(collection(db, "games"),orderBy('name','asc'),where('name', '>=', input),where('name', '<=', input+ '\uf8ff'),limit(30));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        aux.push(doc)
+      });
+      setListOfGames(aux)
+      const lastDo=aux[aux.length -1]
+      setLastDoc(lastDo)
+    }
   }
+  
+  const loadMoreData= async()=>{
+    const aux =[]
+    if(input===''){
+      const q=query(collection(db, "games"),limit(30),orderBy(userC,userC2),startAfter(lastDoc));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        aux.push(doc)
+      });
+      setListOfGames((listOfGamaes) =>[...listOfGamaes,...aux])
 
+      const lastDo=aux[aux.length -1]
+      setLastDoc(lastDo)
+    }else{
+      const q = query(collection(db, "games"),limit(30),orderBy('name','asc'),where('name', '>=', input),where('name', '<=', input+ '\uf8ff'),startAfter(lastDoc));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        aux.push(doc)
+      });
+      console.log(aux)
+      setListOfGames((listOfGamaes) =>[...listOfGamaes,...aux])
+
+      const lastDo=aux[aux.length -1]
+      setLastDoc(lastDo)
+    }
+
+  }
   useEffect(()=>{
     loadData();
-
-  },[q])
-
+  },[input,userC,userC2])
   return (
     <div>
       <div className='authenticatedHome'> 
         <div className='searchContainer'>
         {listOfGamaes.map((item)=>{
           return(
-          <div key={item.steam_appid} className='gamesContainer'>
+          <div key={item.data().steam_appid} className='gamesContainer'>
             <Game 
-            image={item.header_image}
-            name={item.name}
-            idGame={item.steam_appid}
+            image={item.data().header_image}
+            name={item.data().name}
+            idGame={item.data().steam_appid}
             addButton={true}
             />
           </div>
@@ -38,6 +77,7 @@ function GamesList({q}) {
         })
         }
         </div>
+        <button onClick={loadMoreData}>Mas</button>
       </div>
     </div>
   );
