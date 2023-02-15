@@ -2,6 +2,7 @@ import { collection,deleteDoc,query,where,doc } from 'firebase/firestore';
 import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { db } from '../../api/firebaseConfig';
+import { auth } from '../../api/firebaseConfig';
 function ShowReviews({gameId}) {
   const [listOfReviews,setListOfReviews]=useState([]);
   const [count,setCount]= useState(0)
@@ -33,9 +34,10 @@ function ShowReviews({gameId}) {
           <div key={item.id}>
             <p>usuaro={item.data().user}</p>
             <p>review={item.data().review}</p>
+            {item.data().user===auth.currentUser.uid&&
             <button className="button" onClick={()=>deleteReview(item.id)}>
               Eliminar review
-            </button>
+            </button>}
           </div>
           
           )

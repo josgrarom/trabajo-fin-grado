@@ -17,7 +17,7 @@ function Game(props){
         alt=''
       />}
       
-      <p className='gameName'>{props.name}</p>
+      <h1 className='gameName'>{props.name}</h1>
       </Link>
       {props.addButton&&
       <button className="button" onClick={()=> setModalState(!modalState)}>

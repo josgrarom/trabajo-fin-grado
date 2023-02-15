@@ -1,6 +1,6 @@
 import React, {  useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
-import { addDoc, collection,where,getDocs,query,updateDoc,doc} from "firebase/firestore";
+import { addDoc, collection,where,getDocs,query,updateDoc,doc,getDoc} from "firebase/firestore";
 import Rate from '../rate/rate';
 function CreateRating({gameId}){
   const [rating, setRating] = useState(0);
@@ -10,7 +10,6 @@ function CreateRating({gameId}){
     const querySnapshot = await getDocs(q);
 
     if(querySnapshot.empty){
-      console.log('creando')
       const user = auth.currentUser;
       const collectionRef = collection(db, "ratings");
       await addDoc(collectionRef, {
@@ -20,7 +19,6 @@ function CreateRating({gameId}){
       });
       setRating(rate)
     }else{
-      console.log('actualizando')
       querySnapshot.forEach(async(docu) => {
         const collectionRef = doc(db, "ratings/",docu.id);
         await updateDoc(collectionRef, {
@@ -29,11 +27,23 @@ function CreateRating({gameId}){
         setRating(rate)
       });
   }
-
-
   }
 
+  
 
+  const getRating= async()=>{
+    const q = query(collection(db, "ratings"), where('game','==',gameId),where('user','==',auth.currentUser.uid))
+    const querySnapshot = await getDocs(q);
+
+    if(!querySnapshot.empty){
+      querySnapshot.forEach(async(docu) => {
+        const collectionRef = doc(db, "ratings/",docu.id);
+        const docSnap = await getDoc(collectionRef)
+        setRating(docSnap.data().rating)
+      });
+  }
+  }
+  getRating()
   return(
     <div>
       <p>Rating game</p>
