@@ -19,8 +19,8 @@ const Navbar = () => {
           <NavLink to='/about' >
             About
           </NavLink>
-          <NavLink to='/aux' >
-            Aux
+          <NavLink to='/users' >
+            Usuarios
           </NavLink>
           <NavLink to='/user-profile' >
             Pefil
