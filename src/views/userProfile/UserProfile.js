@@ -1,28 +1,22 @@
 import React from 'react'
 import CreateList from '../../components/createList/CreateList';
-import UserData from '../../components/userData/UserData';
-import UserFollows from '../../components/userFollows/UserFollows';
+import Userbar from '../../components/userBar/UserBar';
 import UserGamesLists from '../../components/userGamesLists/UserGamesLists';
-
+import UserProfileData from '../../components/userProfileData/UserProfileData';
 
 function UserProfile() {
   
   return(
     <div>
-
+      <Userbar/>
       <div>
-        <UserData/>
+        <UserProfileData/>
       </div>
-
       <div>
         <UserGamesLists/>
       </div>
       <div>
         <CreateList/>
-      </div>
-      <div>
-        <h1>Follows</h1>
-        <UserFollows/>
       </div>
     </div>
   )

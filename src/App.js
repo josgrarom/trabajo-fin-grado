@@ -13,6 +13,9 @@ import SignIn from './views/login/SignIn';
 import SetUserName from './views/setUserName/SetUserName';
 import { doc,getDoc } from 'firebase/firestore';
 import FilterUsers from './components/filterUsers/FilterUsers';
+import Follows from './views/userProfile/Follows';
+import PersonalData from './views/userProfile/PersonalData';
+import GamesLibrary from './views/userProfile/GamesLibrary';
 function App() {
   const[user,setUser] = React.useState(null);
   const[userName,setUserName] = useState(false);
@@ -40,6 +43,10 @@ function App() {
         <Route exact path='/about' element={<SetUserName/>}/>
         <Route exact path='/sign-up' element={user ?<AuthenticatedHome/> :<SignUp setUser={setUser}/>}/>
         <Route exact path='/sign-in' element={user ?<AuthenticatedHome/> :<SignIn setUser={setUser}/>}/>
+        <Route exact path='/profile' element={user?<UserProfile/>: <SignUp setUser={setUser}/>}/>
+        <Route exact path='/profileData' element={user?<PersonalData/>: <SignUp setUser={setUser}/>}/>
+        <Route exact path='/gamesList' element={user?<GamesLibrary/>: <SignUp setUser={setUser}/>}/>
+        <Route exact path='/followsList' element={user?<Follows/>: <SignUp setUser={setUser}/>}/>
       </Routes>
   </Router>
     

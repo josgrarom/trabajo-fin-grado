@@ -1,25 +1,14 @@
-import React, { useEffect,useState } from "react";
+import React, {useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
-import { useParams } from "react-router-dom";
-import { doc,getDoc,updateDoc,arrayRemove } from "firebase/firestore";
-import Game from "../game/Game";
-import { onAuthStateChanged } from "firebase/auth";
-function UserGamesInList(){
-  const {name} = useParams()
-  const [listOfGames,setListOfGames]=useState([]);
-  const [count,setCount]= useState(0)
-  
-  const deleteGame = async (idGame)=>{
 
-    const user = auth.currentUser;
-    const collectionRef = doc(db, "users/",user.uid);
-    await updateDoc(collectionRef, {
-      [`listas.${name}`]:arrayRemove(idGame),
-      games:arrayRemove(idGame)
-    });
-    setCount(count+1)
-  }
+import { doc,getDoc } from "firebase/firestore";
+import Game from "../../components/game/Game";
+import { onAuthStateChanged } from "firebase/auth";
+import Userbar from "../../components/userBar/UserBar";
+function GamesLibrary(){
+  const [listOfGames,setListOfGames]=useState([]);
+  
 
   const getList= async()=>{
     onAuthStateChanged(auth, async (user) => {
@@ -28,7 +17,7 @@ function UserGamesInList(){
         const user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        const gamesIds = docSnap.data().listas[name]
+        const gamesIds = docSnap.data().games
     
         for (let i = 0; i < gamesIds.length; i += 10) {
           let pedazo = gamesIds.slice(i, i + 10);
@@ -50,13 +39,12 @@ function UserGamesInList(){
     });
   }
 
-  useEffect(()=>{
-    getList();
-
-  },[count])
+  getList();
   return (
     <div>
-      
+      <div>
+        <Userbar/>
+      </div>
       <div className='authenticatedHome'> 
         <div className='searchContainer'>
           {
@@ -67,13 +55,9 @@ function UserGamesInList(){
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
-            list={name}
             deleteButton={true}
             addButton={false}
             />
-            <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
-              Eliminar review
-            </button>
       
           </div>
           )
@@ -84,4 +68,4 @@ function UserGamesInList(){
     </div>
   );
 }
-export default UserGamesInList;
+export default GamesLibrary;

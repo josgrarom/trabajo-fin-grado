@@ -10,7 +10,8 @@ function ShowLists(props) {
     const user = auth.currentUser;
     const collectionRef = doc(db, "users/",user.uid);
     await updateDoc(collectionRef, {
-      [`listas.${list}`]:arrayUnion(props.idGame)
+      [`listas.${list}`]:arrayUnion(props.idGame),
+      games:arrayUnion(props.idGame)
     });
 
   }
