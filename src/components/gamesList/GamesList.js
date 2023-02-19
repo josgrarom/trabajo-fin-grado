@@ -1,8 +1,8 @@
 import './GamesList.css';
-import Game from '../game/Game';
 import { useEffect, useState } from 'react';
 import { collection, query, limit, where,orderBy,getDocs, startAfter } from "firebase/firestore";
 import { db} from '../../api/firebaseConfig';
+import AddGameToList from '../addGameToList/AddGameToList';
 function GamesList({input,userC,userC2}) {
   const [listOfGamaes,setListOfGames]=useState([]);
   const [lastDoc,setLastDoc]=useState();
@@ -65,12 +65,12 @@ function GamesList({input,userC,userC2}) {
         <div className='searchContainer'>
         {listOfGamaes.map((item)=>{
           return(
+            
           <div key={item.data().steam_appid} className='gamesContainer'>
-            <Game 
+            <AddGameToList 
             image={item.data().header_image}
             name={item.data().name}
             idGame={item.data().steam_appid}
-            addButton={true}
             />
           </div>
           )

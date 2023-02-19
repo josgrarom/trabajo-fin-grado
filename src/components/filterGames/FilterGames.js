@@ -6,6 +6,7 @@ function FilterGames() {
   const [inputText, setInputText] = useState("");
   const [userChoice,setUserChoice] = useState('recommendations');
   const [userChoice2,setUserChoice2] = useState('desc');
+
   const options = [
     { value: 'recommendations', label: 'Recomendaciones' },
     { value: 'name', label: 'Nombre' },
@@ -32,27 +33,29 @@ function FilterGames() {
   
   return (
     <div className="main">
-      <Select options={options} 
-        onChange={(choice) => setUserChoice(choice.value)}
-        placeholder={'Recomendaciones'}/>
+      <div className='filterContainer'>
+        <div className="searchOptions">
+          <Select options={options} 
+            onChange={(choice) => setUserChoice(choice.value)}
+            placeholder={'Recomendaciones'}/>
+            
+          <Select options={options2} 
+            onChange={(choice) => setUserChoice2(choice.value)}
+            placeholder={'Descendente'}/>
+        </div>
+
+        <div className="search">
+          <TextField
+            id="outlined-basic"
+            onChange={inputHandler}
+            variant="outlined"
+            fullWidth
+            label="Buscar"
+          />
+        </div>
         
-      <Select options={options2} 
-        onChange={(choice) => setUserChoice2(choice.value)}
-        placeholder={'Descendente'}/>
-        
-      <h1>React Search</h1>
-      <div className="search">
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search"
-        />
-      </div>
-      
         <GamesList input={inputText} userC={userChoice} userC2={userChoice2}/>
-  
+      </div>
     </div>
   );
 }
