@@ -30,7 +30,7 @@ const Navbar = () => {
         {!user?(
         <div>
         <NavBtn>
-          <NavBtnLink to='/sign-in'>Iniciar sesión</NavBtnLink>
+          <NavBtnLink to='/log-in'>Iniciar sesión</NavBtnLink>
         </NavBtn>
         <NavBtn>
           <NavBtnLink to='/sign-up'>Registrarse</NavBtnLink>

@@ -1,10 +1,10 @@
 import './AuthenticatedHome.css';
-import FilterGames from '../../components/filterGames/FilterGames';
+import GamesSearcher from '../../components/gamesSearcher/GamesSearcher';
 function AuthenticatedHome() {
 
   return (
     <div>
-      <FilterGames/>
+      <GamesSearcher/>
     </div>
   );
 }

@@ -8,10 +8,16 @@ function UserProfileData() {
   const [listsNumber,setListsNumber] = useState();
 
   const getGames= async ()=>{
+    let aux = 0
     const docRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(docRef);
-    const gamesIds = docSnap.data().games
-    setGamesNumber(gamesIds.length)
+    const games = Object.values(docSnap.data().listas)
+    games.map((item)=>{
+      item.forEach(() => {
+        aux+=1
+      });
+    })
+    setGamesNumber(aux)
   }
 
   const getLists= async ()=>{

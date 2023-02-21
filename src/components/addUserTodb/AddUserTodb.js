@@ -12,7 +12,7 @@ function AddUserTodb(){
       username:newUserName,
       email:user.email
     });
-/*     window.location.reload(false); */
+    window.location.reload(false);
   }
   return(
     <div>

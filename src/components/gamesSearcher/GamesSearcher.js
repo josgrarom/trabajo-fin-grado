@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { TextField } from "@mui/material";
 import GamesList from "../gamesList/GamesList";
 import Select from 'react-select'
-function FilterGames() {
+function GamesSearcher() {
   const [inputText, setInputText] = useState("");
   const [userChoice,setUserChoice] = useState('recommendations');
   const [userChoice2,setUserChoice2] = useState('desc');
@@ -30,7 +30,6 @@ function FilterGames() {
     setInputText(str2);
   };
 
-  
   return (
     <div className="main">
       <div className='filterContainer'>
@@ -60,4 +59,4 @@ function FilterGames() {
   );
 }
 
-export default FilterGames;
+export default GamesSearcher;

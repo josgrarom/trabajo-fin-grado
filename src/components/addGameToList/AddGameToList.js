@@ -1,8 +1,8 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import Modal from '../modal/Modal';
 import { doc,updateDoc,arrayUnion,getDoc } from "firebase/firestore";
 import Game from '../game/Game';
-import { Link } from 'react-router-dom';
+
 import {auth,db} from '../../api/firebaseConfig'
 
 function AddGameToList(props){
@@ -12,8 +12,7 @@ function AddGameToList(props){
     const user = auth.currentUser;
     const collectionRef = doc(db, "users/",user.uid);
     await updateDoc(collectionRef, {
-      [`listas.${list}`]:arrayUnion(props.idGame),
-      games:arrayUnion(props.idGame)
+      [`listas.${list}`]:arrayUnion(props.idGame)
     });
     alert(`${props.name} añadido a ${list}`);
   }
@@ -24,16 +23,17 @@ function AddGameToList(props){
     const docSnap = await getDoc(docRef);
     setLists(Object.keys(docSnap.data().listas))
   }
-  getlists();
+  useEffect(()=>{
+    getlists();
+
+  },[])
   return (
     <div>
-      <Link to={`/game/${props.idGame}`}>
       <Game 
       image={props.image}
       name={props.name}
-      idGame={props.steam_appid}
+      idGame={props.idGame}
       />
-      </Link>
       <button className="button" onClick={()=> setModalState(!modalState)}>
         Añadir juego
       </button>

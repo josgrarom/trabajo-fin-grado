@@ -17,8 +17,13 @@ function GamesLibrary(){
         const user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        const gamesIds = docSnap.data().games
-    
+        const gamesIds = []
+        const games = Object.values(docSnap.data().listas)
+        games.map((item)=>{
+          item.forEach((id) => {
+          gamesIds.push(id)
+        });
+    })
         for (let i = 0; i < gamesIds.length; i += 10) {
           let pedazo = gamesIds.slice(i, i + 10);
           aux.push(pedazo);
@@ -55,8 +60,6 @@ function GamesLibrary(){
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
-            deleteButton={true}
-            addButton={false}
             />
       
           </div>
