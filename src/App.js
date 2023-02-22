@@ -21,7 +21,7 @@ function App() {
   const[userName,setUserName] = useState(false);
 
   useEffect( ()=>{
-
+    
     firebaseConfig.auth().onAuthStateChanged(async (firebaseUser)=>{
       setUser(firebaseUser);
       const docRef = doc(db, "users",firebaseUser.uid );
