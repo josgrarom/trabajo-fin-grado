@@ -7,13 +7,14 @@ import Game from "../game/Game";
 import { onAuthStateChanged } from "firebase/auth";
 function UserGamesInList(){
   const {name} = useParams()
+  const {user} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
   const [count,setCount]= useState(0)
-  
+  const currentUser= auth.currentUser.uid
   const deleteGame = async (idGame)=>{
 
-    const user = auth.currentUser;
-    const collectionRef = doc(db, "users/",user.uid);
+
+    const collectionRef = doc(db, "users/",user)
     await updateDoc(collectionRef, {
       [`listas.${name}`]:arrayRemove(idGame),
       games:arrayRemove(idGame)
@@ -22,11 +23,11 @@ function UserGamesInList(){
   }
 
   const getList= async()=>{
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
+    onAuthStateChanged(auth, async () => {
+    
         const aux =[]
-        const user = auth.currentUser;
-        const docRef = doc(db, "users", user.uid);
+ 
+        const docRef = doc(db, "users", user);
         const docSnap = await getDoc(docRef);
         const gamesIds = docSnap.data().listas[name]
     
@@ -44,9 +45,7 @@ function UserGamesInList(){
             setListOfGames(aux2)
           });
         })
-      } else {
 
-      }
     });
   }
 
@@ -68,9 +67,10 @@ function UserGamesInList(){
             name={item.name}
             idGame={item.steam_appid}
             />
+            {currentUser===user&&
             <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
               Eliminar Juego
-            </button>
+            </button>}
       
           </div>
           )

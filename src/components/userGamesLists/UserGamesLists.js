@@ -5,14 +5,13 @@ import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { doc,updateDoc,deleteField } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth';
-function UserGamesLists(){
-
+function UserGamesLists({otherUser,id}){
   const [lists,setLists] = useState([])
   const [count,setCount]= useState(0)
 
   const deleteList =  async (list)=>{
-    const user = auth.currentUser;
-    const collectionRef = doc(db, "users/",user.uid);
+
+    const collectionRef = doc(db, "users/",id);
     await updateDoc(collectionRef, {
       [`listas.${list}`]:deleteField()
   });
@@ -22,7 +21,7 @@ function UserGamesLists(){
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const user = auth.currentUser;
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", id);
         const docSnap = await getDoc(docRef);
         setLists(Object.keys(docSnap.data().listas))
       } else {
@@ -44,14 +43,15 @@ function UserGamesLists(){
           return(
             
             <div key ={item} className="Container">
-              <Link to={`/list/${item}`}>
+              <Link to={`/list/${item}/${id}`}>
               <p>
                 {item}
               </p>
               </Link>
+              {!otherUser&&
                 <button className="button" onClick={()=>deleteList(item)}>
                   Eliminar lista
-                </button>
+                </button>}
             </div>
             
           )

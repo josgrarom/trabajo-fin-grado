@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { orderBy,limit,getDocs,collection,query,doc,updateDoc,arrayUnion, startAfter,where,getDoc } from 'firebase/firestore';
 import { db,auth } from '../../api/firebaseConfig';
 import User from '../user/User';
+import { Link } from 'react-router-dom';
 function UsersList({input}){
   const [listOfUsers,setListOfUsers]=useState([]);
   const [lastDoc,setLastDoc]=useState();
@@ -92,11 +93,13 @@ function UsersList({input}){
           return(
             
           <div key={item.id} >
+            <Link to={`/user/${item.id}`}>
             <User 
             id={item.id}
             email={item.data().email}
             username={item.data().username}
             />
+            </Link>
             <br></br>
             {!follows.includes(item.data().username)&&
             <button onClick={()=>addUser(item.data().username)}>
