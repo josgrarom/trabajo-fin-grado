@@ -19,6 +19,9 @@ const Userbar = () => {
           <NavLink to='/followsList' >
             Siguiendo
           </NavLink>
+          <NavLink to='/reviewsList' >
+            Reviews
+          </NavLink>
         </NavMenu>
       </Nav>
     </>

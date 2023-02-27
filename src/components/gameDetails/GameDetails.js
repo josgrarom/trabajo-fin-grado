@@ -70,7 +70,7 @@ function GameDetails(){
             </div>
             {parse(item.data().about_the_game)}
             <div>
-              <CreateReview gameId={item.id}/>
+              <CreateReview gameId={item.id} gameN={item.data().name}/>
             </div>
             <div>
               <ShowReviews gameId={item.id}/>

@@ -16,6 +16,7 @@ import FilterUsers from './components/filterUsers/FilterUsers';
 import Follows from './views/userProfile/Follows';
 import PersonalData from './views/userProfile/PersonalData';
 import GamesLibrary from './views/userProfile/GamesLibrary';
+import ReviewsList from './views/userProfile/ReviewsList';
 function App() {
   const[user,setUser] = React.useState(null);
   const[userName,setUserName] = useState(false);
@@ -48,6 +49,7 @@ function App() {
         <Route exact path='/profileData' element={user ? (userName?<PersonalData/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/gamesList' element={user ? (userName?<GamesLibrary/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/followsList'element={user ? (userName?<Follows/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
+        <Route exact path='/reviewsList'element={user ? (userName?<ReviewsList/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
       </Routes>
   </Router>
     

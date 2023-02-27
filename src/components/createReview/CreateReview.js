@@ -2,7 +2,7 @@ import React, {  useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
 import { addDoc, collection,where,getDocs,query,updateDoc,doc} from "firebase/firestore";
 
-function CreateReview({gameId}){
+function CreateReview({gameId,gameN}){
   const [newReview, setNewReview] = useState("");
   
   const updateReview= async(reviw)=>{
@@ -14,6 +14,7 @@ function CreateReview({gameId}){
       const collectionRef = collection(db, "reviews");
       await addDoc(collectionRef, {
         game:gameId,
+        gameName:gameN,
         user:user.uid,
         review:reviw
       });
