@@ -10,7 +10,8 @@ function AddUserTodb(){
     const collectionRef = doc(db, "users",user.uid);
     await setDoc(collectionRef, {
       username:newUserName,
-      email:user.email
+      email:user.email,
+      follows:[]
     });
     window.location.reload(false);
   }

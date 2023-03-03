@@ -6,7 +6,6 @@ function ReviewsUserList(){
   const [listOfReviews,setListOfReviews]=useState([]);
   const [count,setCount]= useState(0)
   const currentUser= auth.currentUser.uid
-  const [game,setGame] = useState([])
   const deleteReview = async (idReview)=>{
 
     const collectionRef = doc(db, "reviews/",idReview);
@@ -24,11 +23,7 @@ function ReviewsUserList(){
       setListOfReviews(aux)
     };
   
-  const getGame = async(gameUid)=>{
-    const docRef = doc(db, "games", gameUid);
-    const docSnap = await getDoc(docRef);
-    return (docSnap.data().name)
-  }
+
 
   useEffect(()=>{
     getList();

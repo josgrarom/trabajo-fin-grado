@@ -11,6 +11,7 @@ function SignUp(props) {
       .then((firebaseUser)=>{
       console.log("usuario creado:",firebaseUser);
       props.setUser(firebaseUser);
+      window.location.reload(false);
       })
     );
   };
