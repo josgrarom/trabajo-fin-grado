@@ -4,6 +4,7 @@ import { doc,updateDoc,arrayUnion,getDoc } from "firebase/firestore";
 import Game from '../game/Game';
 
 import {auth,db} from '../../api/firebaseConfig'
+import { Button, Card } from 'reactstrap';
 
 function AddGameToList(props){
   const [modalState,setModalState]= useState(false);
@@ -28,19 +29,24 @@ function AddGameToList(props){
 
   },[])
   return (
-    <div>
+    <div className='game'>
+    <Card  color="primary"
+  outline>
       <Game 
       image={props.image}
       name={props.name}
       idGame={props.idGame}
+      genres={props.genres}
+      platforms={props.platforms}
       />
-      <button className="button" onClick={()=> setModalState(!modalState)}>
-        Añadir juego
-      </button>
-
-
+      <div className='addGame'>
+        <Button  onClick={()=> setModalState(!modalState)}>
+          Añadir juego
+        </Button>
+      </div>
+    </Card>
       <Modal state={modalState} changeState={setModalState}>
-      <button className="button" onClick={()=> setModalState(!modalState)}>
+      <Button  onClick={()=> setModalState(!modalState)}>
         {lists.map((item)=>{
             return(
               <div key ={item} onClick={()=>addGame(item)} className="Container">
@@ -50,7 +56,7 @@ function AddGameToList(props){
               </div>
             )
           })}
-        </button>
+        </Button>
       </Modal>
     </div>
 

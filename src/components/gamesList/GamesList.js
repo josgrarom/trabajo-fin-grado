@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { collection, query, limit, where,orderBy,getDocs, startAfter } from "firebase/firestore";
 import { db} from '../../api/firebaseConfig';
 import AddGameToList from '../addGameToList/AddGameToList';
+import { Button } from 'reactstrap';
 function GamesList({input,userC,userC2}) {
   const [listOfGamaes,setListOfGames]=useState([]);
   const [lastDoc,setLastDoc]=useState();
@@ -61,24 +62,25 @@ function GamesList({input,userC,userC2}) {
   },[input,userC,userC2])
   return (
     <div>
-      <div className='authenticatedHome'> 
-        <div className='searchContainer'>
+        <div>
         {listOfGamaes.map((item)=>{
-          return(
-            
+          return(      
           <div key={item.data().steam_appid} className='gamesContainer'>
             <AddGameToList 
             image={item.data().header_image}
             name={item.data().name}
             idGame={item.data().steam_appid}
+            genres={item.data().genres}
+            platforms={item.data().platforms}
             />
           </div>
           )
         })
         }
         </div>
-        <button onClick={loadMoreData}>Mas</button>
-      </div>
+        <div className='more'>
+          <Button onClick={loadMoreData}>Mas</Button>
+        </div>
     </div>
   );
 }

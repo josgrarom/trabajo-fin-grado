@@ -27,3 +27,19 @@ body {
   text-align: center;
 }
 
+
+.addGame{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.more{
+  display: flex;
+  clear: both; 
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
