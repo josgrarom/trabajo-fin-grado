@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, {useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
 
@@ -43,8 +43,10 @@ function GamesLibrary(){
       }
     });
   }
+  useEffectg(()=>{
+    getList();
+  },[])
 
-  getList();
   return (
     <div>
       <div>
@@ -60,6 +62,8 @@ function GamesLibrary(){
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
+            genres={item.genres}
+            platforms={item.platforms}
             />
       
           </div>

@@ -66,6 +66,8 @@ function UserGamesInList(){
             image={item.header_image}
             name={item.name}
             idGame={item.steam_appid}
+            genres={item.genres}
+            platforms={item.platforms}
             />
             {currentUser===user&&
             <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
