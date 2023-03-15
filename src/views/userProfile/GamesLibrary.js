@@ -43,7 +43,7 @@ function GamesLibrary(){
       }
     });
   }
-  useEffectg(()=>{
+  useEffect(()=>{
     getList();
   },[])
 

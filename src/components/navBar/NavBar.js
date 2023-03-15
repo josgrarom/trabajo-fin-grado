@@ -1,45 +1,59 @@
-import React from 'react';
-import {   Nav,
+import React, { useState } from 'react';
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
   NavLink,
-  NavMenu,
-  NavBtn,
-  NavBtnLink } from './NavBarElements';
-  import { auth } from '../../api/firebaseConfig';
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+  Button,
+} from 'reactstrap';
+
+import { auth } from '../../api/firebaseConfig';
 import SignOut from '../signOut/SignOut';
-const Navbar = () => {
+
+function NaveBar(args){
+
   const user = auth.currentUser;
   return (
     <>
-      <Nav>
-        <NavLink to='/'>
-          Home
-        </NavLink>
-   
-        <NavMenu>
-          <NavLink to='/about' >
-            About
-          </NavLink>
-          <NavLink to='/users' >
-            Usuarios
-          </NavLink>
-          <NavLink to='/user-profile' >
-            Pefil
-          </NavLink>
-        </NavMenu>
-      
-        {!user?(
+
+      <Navbar dark="true" container ="fluid" color="dark"  expand="md" sticky="top" >
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Nav  navbar>
+        <NavItem>
+            <NavLink href="/about">Sobre nosotros</NavLink>
+        </NavItem>
+        <NavItem>
+              <NavLink href="/users">Usuarios</NavLink>
+              </NavItem>
+              <NavItem>
+              <NavLink href="/user-profile">Perfil</NavLink>
+              </NavItem>
+        </Nav>
+
+          <NavbarText>        {!user?(
         <div>
-        <NavBtn>
-          <NavBtnLink to='/log-in'>Iniciar sesión</NavBtnLink>
-        </NavBtn>
-        <NavBtn>
-          <NavBtnLink to='/sign-up'>Registrarse</NavBtnLink>
-        </NavBtn>
+        <Button>
+          <NavLink href='/log-in'>Iniciar sesión</NavLink>
+        </Button>
+        <Button>
+          <NavLink href='/sign-up'>Registrarse</NavLink>
+        </Button>
         </div>
-        ):(<NavBtn><SignOut/></NavBtn>)}
-      </Nav>
+        ):(<SignOut/>)}</NavbarText>
+
+      </Navbar>
+
     </>
   );
 };
 
-export default Navbar;
+export default NaveBar;

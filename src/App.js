@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './views/home/Home';
 import React,{useEffect, useState} from "react";
 import AuthenticatedHome from './views/authenticatedHome/AuthenticatedHome';
-import Navbar from './components/navBar/NavBar';
+import Navebar from './components/navBar/NavBar';
 import UserProfile from './views/userProfile/UserProfile';
 import UserGamesInList from './components/userGamesInList/UserGamesInList';
 import GameDetails from './components/gameDetails/GameDetails';
@@ -35,7 +35,7 @@ function App() {
   return(
   <>
   <Router>
-    <Navbar/>      
+    <Navebar/>      
       <Routes>
         <Route exact path='/'  element={user ? (userName?<AuthenticatedHome/>: <SetUserName/>) : <Home />}/>
         <Route exact path='/user-profile' element={user ? (userName?<UserProfile/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>

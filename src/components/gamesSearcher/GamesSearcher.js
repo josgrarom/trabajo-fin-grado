@@ -33,28 +33,34 @@ function GamesSearcher() {
   return (
     <div className="main">
       <div className='filterContainer'>
+        <div className="search">
+            <TextField
+              id="outlined-basic"
+              onChange={inputHandler}
+              variant="outlined"
+              fullWidth
+              label="Buscar"
+            />
+        </div >
         <div className="searchOptions">
-          <Select options={options} 
-            onChange={(choice) => setUserChoice(choice.value)}
-            placeholder={'Recomendaciones'}/>
-            
-          <Select options={options2} 
-            onChange={(choice) => setUserChoice2(choice.value)}
-            placeholder={'Descendente'}/>
+          <div className="select">
+            <Select options={options} 
+              onChange={(choice) => setUserChoice(choice.value)}
+              placeholder={'Recomendaciones'}/>
+          </div>
+
+          <div className="select">
+            <Select options={options2} 
+              onChange={(choice) => setUserChoice2(choice.value)}
+              placeholder={'Descendente'}/>
+          </div>
         </div>
 
-        <div className="search">
-          <TextField
-            id="outlined-basic"
-            onChange={inputHandler}
-            variant="outlined"
-            fullWidth
-            label="Buscar"
-          />
-        </div>
+
         
-        <GamesList input={inputText} userC={userChoice} userC2={userChoice2}/>
+        
       </div>
+      <GamesList input={inputText} userC={userChoice} userC2={userChoice2}/>
     </div>
   );
 }
