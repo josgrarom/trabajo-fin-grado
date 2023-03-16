@@ -6,6 +6,7 @@ import CreateReview from "../createReview/CreateReview";
 import ShowReviews from "../showReviews/ShowReviews";
 import CreateRating from "../createRating/createRating";
 import parse from 'html-react-parser';
+import { Card, CardHeader, CardTitle, ListGroup, ListGroupItem } from "reactstrap";
 
 function GameDetails(){
 
@@ -15,6 +16,7 @@ function GameDetails(){
   const {id} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
 
+  
   const getGame= async()=>{
     const aux =[]
     const q = query(collection(db, "games"), where('steam_appid','==',parseInt(id)))
@@ -41,7 +43,7 @@ function GameDetails(){
       setListOfRatings(aux)
       for(let i of listOfRatings) sum+=i;
   }
-    setAverageRating(sum/listOfRatings.length)
+    setAverageRating((sum/listOfRatings.length).toFixed(2))
   }
 
   useEffect(()=>{
@@ -50,39 +52,76 @@ function GameDetails(){
   },[averageRating])
 
   return (
-    <div>
-      
-      <div className='authenticatedHome'> 
-        <div className='searchContainer'>
-          {
-        listOfGames.map((item)=>{
-          return(
-          <div key={item.data().steam_appid} >
-            <div>
-              <img  src={item.data().header_image} alt=''/>
-              <p>Nombre ={item.data().name}</p>
-              <p>Id ={item.data().steam_appid}</p>
-              <p>puntuación media={averageRating}</p>
-            </div>
-            <div>
-              <CreateRating gameId={item.id}/>
-              <br></br>
-            </div>
-            {parse(item.data().about_the_game)}
-            <div>
-              <CreateReview gameId={item.id} gameN={item.data().name}/>
-            </div>
-            <div>
-              <ShowReviews gameId={item.id}/>
+    <>
+
+    <div className="gameInfo">
+
+      {listOfGames.map((item)=>{
+        return(
+        <div key={item.data().steam_appid} >
+
+          <div className="gameDetails">
+            <div className="imgAndName">
+            <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.01)',  border: 'none' }}>
+              <img  src={item.data().header_image} style={{border: '1px solid ' }}alt=''/>
+              <CardTitle tag="h3">{item.data().name}</CardTitle>
+
+              <div className="score">
+                <CreateRating gameId={item.id}/>
+                <p>Puntuación media <strong>{averageRating}</strong></p>
+              </div>
+              
+
+              <div className="tables" style={{border: '1px solid ' }}>
+                <div className="table1">
+                  <CardHeader tag="header">
+                    Géneros
+                  </CardHeader>
+                  <ListGroup flush>
+                    {item.data().genres.map((genre)=>{
+                      return(
+                        <>
+                          <ListGroupItem>{genre.description}</ListGroupItem>
+                        </>)})}
+                  </ListGroup>
+                </div>
+                <div className="table1">
+                  <CardHeader tag="header">
+                    Plataformas
+                  </CardHeader>
+                  <ListGroup flush>
+                    {Object.keys(item.data().platforms).map((platform)=>{
+                      return(
+                        <>
+                          <ListGroupItem>{platform}</ListGroupItem>
+                        </>)})}
+                  </ListGroup>
+                </div>
+              </div>
+            </Card>
             </div>
 
           </div>
-          )
-        })}
-        </div>
-      </div>
+          <div className="containers">
+            <div className="description">
+            <h2>Conoce más sobre el juego</h2>
+              {parse(item.data().about_the_game)}
+            </div>
+            <div className="reviews">
+            <h2>Opiniones de los jugadores</h2>
+              <ShowReviews gameId={item.id}/>
+            </div>
 
-    </div>
+            <div className="reviewForm">
+              <CreateReview gameId={item.id} gameN={item.data().name}/>
+            </div>
+          </div>
+
+        </div>
+        )
+      })}
+      </div>
+    </>
   );
 
 }

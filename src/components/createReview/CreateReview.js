@@ -1,6 +1,7 @@
 import React, {  useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
 import { addDoc, collection,where,getDocs,query,updateDoc,doc} from "firebase/firestore";
+import { Input } from 'reactstrap';
 
 function CreateReview({gameId,gameN}){
   const [newReview, setNewReview] = useState("");
@@ -33,13 +34,13 @@ function CreateReview({gameId,gameN}){
 
   return(
     <div>
-    <input
-    placeholder="Name..."
+    <Input
+    type="textarea"
+    placeholder="Tu opinión"
     onChange={(event) => {
       setNewReview(event.target.value);
-    }}
-  />
-  <button onClick={()=>updateReview(newReview)}> Create review</button>
+    }}/>
+    <button onClick={()=>updateReview(newReview)}> Create review</button>
   </div>
   )
 

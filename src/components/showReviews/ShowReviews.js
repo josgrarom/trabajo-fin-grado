@@ -1,6 +1,7 @@
 import { collection,deleteDoc,query,where,doc } from 'firebase/firestore';
 import { getDocs } from "firebase/firestore";
 import { useEffect, useState } from 'react';
+import { Button } from 'reactstrap';
 import { db } from '../../api/firebaseConfig';
 import { auth } from '../../api/firebaseConfig';
 function ShowReviews({gameId}) {
@@ -27,24 +28,21 @@ function ShowReviews({gameId}) {
   },[count])
   return (
     <div>
-      <div className='authenticatedHome'> 
-
         {listOfReviews.map((item)=>{
           return(
           <div key={item.id}>
-            <p>usuaro={item.data().user}</p>
-            <p>review={item.data().review}</p>
-            {item.data().user===auth.currentUser.uid&&
-            <button className="button" onClick={()=>deleteReview(item.id)}>
-              Eliminar review
-            </button>}
+          <h5>{item.data().user}</h5>
+          <div className='reviewText'>
+              <p>{item.data().review}</p>
           </div>
-          
+          {item.data().user===auth.currentUser.uid&&
+            <Button className="button" onClick={()=>deleteReview(item.id)}>
+              Eliminar review
+            </Button>}
+          </div>
           )
         })
         }
-     
-      </div>
     </div>
   );
 }

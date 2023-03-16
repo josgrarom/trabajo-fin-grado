@@ -46,9 +46,7 @@ function CreateRating({gameId}){
   getRating()
   return(
     <div>
-      <p>Rating game</p>
       <Rate rating={rating} onRating={(rate) =>updateRating(rate)} />
-      <p>Rating - {rating}</p>
   </div>
   )
 

@@ -22,9 +22,10 @@ const Rate = ({ count, rating, color, onRating }) => {
       .fill(0)
       .map((_, i) => i + 1)
       .map((idx) => (
-        <FontAwesomeIcon
+        <FontAwesomeIcon 
+
           key={idx}
-          className="cursor-pointer"
+          className="cursor-pointer fa-2x "
           icon="star"
           onClick={() => onRating(idx)}
           style={{ color: getColor(idx) }}
@@ -48,7 +49,7 @@ Rate.defaultProps = {
   count: 5,
   rating: 0,
   color: {
-    filled: "#f5eb3b",
+    filled: "#186FF3",
     unfilled: "#DCDCDC",
   },
 };

@@ -64,3 +64,121 @@ body {
   padding-right: 20px;
 }
 
+.gameInfo{
+  margin-top: 20px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.gameDetails{
+  
+  float: left;
+}
+
+.imgAndName{
+  padding-right: 40px;
+  float: left;
+  text-align: center;
+  background-color: 'rgba(255, 255, 255, 0.5)'
+  
+}
+.imgAndName img{
+
+  width: 500px;
+  height: auto;
+  border-radius: 5%;
+ 
+}
+
+.imgAndName h3{
+
+  padding-top: 10px;
+  max-width: 500px;
+}
+
+.tables{
+  float: left;
+}
+
+.table1{
+  float: left;
+  width: 250px;
+  border-radius: 5%;
+}
+
+.table1 header{
+  font-weight: bold;
+}
+
+.score{
+  padding: 20px;
+}
+
+.score p{
+  padding-top: 10px;
+}
+
+.containers{
+  display:inline-block;
+  }
+
+.description{
+  
+  color: white;
+  background-color:#2A2A2A;
+  padding: 15px;
+  border-style: solid;
+  width: 750px;
+  height: 299px;
+  border-width: 1px;
+  border-radius: 2%;
+  overflow: auto;
+  margin-bottom: 13px;
+}
+
+.description h2{
+  padding-bottom: 20px;
+}
+
+.reviews{
+  color: white;
+  background-color:#2A2A2A;
+  padding: 15px;
+  border-style: solid;
+  width: 750px;
+  height: 299px;
+  border-width: 1px;
+  border-radius: 2%;
+}
+
+.reviews h2{
+  padding-bottom: 20px;
+}
+
+.reviewForm{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+
+}
+
+.reviewContainer{
+  color: black;
+  background-color:silver;
+  border-style: solid;
+
+}
+.reviewText{
+  color: black;
+  background-color:silver;
+  border-width: 1px;
+  border-style: solid;
+  height: 100px;
+  overflow: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+  margin: 0;
+}
