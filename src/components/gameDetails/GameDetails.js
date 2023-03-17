@@ -44,6 +44,7 @@ function GameDetails(){
       for(let i of listOfRatings) sum+=i;
   }
     setAverageRating((sum/listOfRatings.length).toFixed(2))
+    
   }
 
   useEffect(()=>{
@@ -108,13 +109,14 @@ function GameDetails(){
               {parse(item.data().about_the_game)}
             </div>
             <div className="reviews">
-            <h2>Opiniones de los jugadores</h2>
-              <ShowReviews gameId={item.id}/>
+            <div className="reviewForm">
+              <h2>Opiniones de los jugadores</h2>
+                
+                <CreateReview gameId={item.id} gameN={item.data().name}/>
+              </div>
+                <ShowReviews gameId={item.id}/>
             </div>
 
-            <div className="reviewForm">
-              <CreateReview gameId={item.id} gameN={item.data().name}/>
-            </div>
           </div>
 
         </div>

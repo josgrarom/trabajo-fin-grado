@@ -62,6 +62,7 @@ function GamesList({input,userC,userC2}) {
   },[input,userC,userC2])
   return (
     <div>
+      
         <div>
         {listOfGamaes.map((item)=>{
           return(      

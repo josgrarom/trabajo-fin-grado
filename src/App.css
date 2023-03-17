@@ -149,26 +149,30 @@ body {
   height: 299px;
   border-width: 1px;
   border-radius: 2%;
+  overflow: auto;
 }
 
 .reviews h2{
   padding-bottom: 20px;
+  display: flex;
+  float: left;
 }
 
 .reviewForm{
   margin-top: 10px;
   margin-bottom: 10px;
   display: flex; 
-  align-items: center; 
-  justify-content: center; 
 
 }
 
+.reviewForm h2{
+  padding-right: 120px;
+
+}
 .reviewContainer{
   color: black;
   background-color:silver;
   border-style: solid;
-
 }
 .reviewText{
   color: black;
@@ -181,4 +185,26 @@ body {
   word-break: break-all;
   padding: 10px;
   margin: 0;
+}
+
+.listContainer{
+
+  border-width: 1px;
+  border-style: solid;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+}
+
+.list{
+  font-style: bold;
+  font-size: 50px;
+  
+}
+
+
+.list:hover{
+
+  cursor: pointer;
+  color: rgb(0, 110, 255)
 }

@@ -31,13 +31,13 @@ function ShowReviews({gameId}) {
         {listOfReviews.map((item)=>{
           return(
           <div key={item.id}>
-          <h5>{item.data().user}</h5>
+          <h5 style={{paddingtop:'10px'}}>{item.data().username}</h5>
           <div className='reviewText'>
               <p>{item.data().review}</p>
           </div>
           {item.data().user===auth.currentUser.uid&&
-            <Button className="button" onClick={()=>deleteReview(item.id)}>
-              Eliminar review
+            <Button onClick={()=>deleteReview(item.id)}>
+              Eliminar
             </Button>}
           </div>
           )

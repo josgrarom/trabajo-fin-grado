@@ -25,6 +25,7 @@ function CreateRating({gameId}){
           rating:rate
         });
         setRating(rate)
+        window.location.reload(false);
       });
   }
   }
