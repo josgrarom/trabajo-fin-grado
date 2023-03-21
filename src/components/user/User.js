@@ -1,17 +1,25 @@
 import React, {  useState } from 'react'
 
-import { Link } from 'react-router-dom';
+import { Card, CardTitle } from 'reactstrap';
 function User(props){
 
-  return (
-    
-    <div >
-      
-
-      <p>{props.id}</p>
-      <p>{props.username}</p>
-      <p>{props.email}</p>
-      
+  return ( 
+    <div>
+      <div className='gameContainer'>
+      <Card>
+        {<img
+            className='gameImg'
+            src={require(`/src/images/${props.image}`)}
+            alt=''
+          />}
+          <CardTitle  className='gameName'>
+            <p>{props.username}</p>
+          </CardTitle>
+          <CardTitle  className='gameName'>
+            <p>{props.email}</p>
+          </CardTitle>
+      </Card>
+      </div>
     </div>
 
   )

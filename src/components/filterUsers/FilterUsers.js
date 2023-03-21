@@ -14,24 +14,19 @@ function FilterUsers() {
   const str2 = arr.join(" ");
     setInputText(str2);
   };
-
   
   return (
-    <div className="main">
-        
-      <h1>React Search</h1>
-      <div className="search">
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search"
-        />
+    <div>  
+      <div className="searchUsers">
+          <TextField
+            id="outlined-basic"
+            onChange={inputHandler}
+            variant="outlined"
+            fullWidth
+            label="Search"/>
       </div>
-      
-        <UsersList input={inputText}/>
-  
+      <UsersList input={inputText}/>
+
     </div>
   );
 }

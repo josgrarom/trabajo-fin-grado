@@ -208,3 +208,54 @@ body {
   cursor: pointer;
   color: rgb(0, 110, 255)
 }
+
+.searchUsers{
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 900px;
+}
+
+.navbar-transparente {
+
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.navbarUser{
+font-weight: bold;
+  margin: 0 auto;
+  align-items: center;
+
+}
+
+.userData{
+  border-width: 1px;
+  border-style: solid;
+  width: 400px;
+  margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.userData h3{
+
+  text-align: center;
+}
+.userData img {
+  height: auto;
+  width: 200px;
+
+
+}
+
+.userDescription{
+  color: black;
+  background-color:silver;
+  border-width: 1px;
+  border-style: solid;
+  height: 300px;
+  overflow: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+  margin: 0;
+}

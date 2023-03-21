@@ -1,29 +1,28 @@
 import React from 'react';
-import {   Nav,
-  NavLink,
-  NavMenu} from './NavBarElements';
-const Userbar = () => {
+import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
+
+function Userbar(){
   return (
     <>
-      <Nav>
-        <NavMenu>
-        <NavLink to='/profile' >
-            Perfil
-          </NavLink>
-          <NavLink to='/profileData' >
-            Datos personales
-          </NavLink>
-          <NavLink to='/gamesList' >
-            Juegos
-          </NavLink>
-          <NavLink to='/followsList' >
-            Siguiendo
-          </NavLink>
-          <NavLink to='/reviewsList' >
-            Reviews
-          </NavLink>
-        </NavMenu>
-      </Nav>
+      <Navbar light="true"className="navbar-transparente"  container ="fluid"  expand="md" >
+        <Nav className="navbarUser" navbar>
+          <NavItem>
+            <NavLink href='/profile'>Perfil</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/profileData'>Datos personales</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/gamesList'>Juegos</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/followsList'>Siguiendo</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/reviewsList'>Reviews</NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
     </>
   );
 };

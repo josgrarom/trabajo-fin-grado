@@ -12,11 +12,11 @@ import SignUp from './views/login/SignUp';
 import LogIn from './views/login/LogIn';
 import SetUserName from './views/setUserName/SetUserName';
 import { doc,getDoc } from 'firebase/firestore';
-import FilterUsers from './components/filterUsers/FilterUsers';
 import Follows from './views/userProfile/Follows';
 import PersonalData from './views/userProfile/PersonalData';
 import GamesLibrary from './views/userProfile/GamesLibrary';
 import ReviewsList from './views/userProfile/ReviewsList';
+import FindUsers from './views/findUsers/FindUsers';
 function App() {
   const[user,setUser] = React.useState(null);
   const[userName,setUserName] = useState(false);
@@ -42,7 +42,7 @@ function App() {
         <Route exact path='/list/:name/:user' element={user ? (userName?<UserGamesInList/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/game/:id' element={user ? (userName?<GameDetails/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/user/:id' element={user ? (userName?<UserProfile user={user.uid}/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
-        <Route exact path='/users' element={user ? (userName?<FilterUsers/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
+        <Route exact path='/users' element={user ? (userName?<FindUsers/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/sign-up' element={user ?<AuthenticatedHome/> :<SignUp setUser={setUser}/>}/>
         <Route exact path='/log-in' element={user ? (userName?<AuthenticatedHome/>: <SetUserName/>) : <LogIn setUser={setUser}/>}/>
         <Route exact path='/profile' element={user ? (userName?<UserProfile/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>

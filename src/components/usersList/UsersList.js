@@ -4,11 +4,13 @@ import { orderBy,limit,getDocs,collection,query,doc,updateDoc,arrayUnion, startA
 import { db,auth } from '../../api/firebaseConfig';
 import User from '../user/User';
 import { Link } from 'react-router-dom';
+import { Button, Card } from 'reactstrap';
 function UsersList({input}){
   const [listOfUsers,setListOfUsers]=useState([]);
   const [lastDoc,setLastDoc]=useState();
   const [username,setUsername]=useState();
   const [follows,setFollows] = useState([])
+  const [count,setCount]= useState(0)
   const user = auth.currentUser;
 
   const getUserName = async()=>{
@@ -35,7 +37,7 @@ function UsersList({input}){
       const lastDo=aux[aux.length -1]
       setLastDoc(lastDo)
     }else{
-      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),where('username', '!=',username),where('username', 'not in ',follows));
+      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -45,11 +47,10 @@ function UsersList({input}){
       setLastDoc(lastDo)
     }
   }
-  
   const loadMoreData= async()=>{
     const aux =[]
     if(input===''){
-      const q=query(collection(db, "users"), limit(30),orderBy('username','asc'),startAfter(lastDoc),where('username', '!=',username),where('username', 'not in ',follows));
+      const q=query(collection(db, "users"), limit(30),orderBy('username','asc'),startAfter(lastDoc),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -59,7 +60,7 @@ function UsersList({input}){
       const lastDo=aux[aux.length -1]
       setLastDoc(lastDo)
     }else{
-      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),startAfter(lastDoc),where('username', '!=',username),where('username', 'not in ',follows));
+      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),startAfter(lastDoc),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -78,40 +79,37 @@ function UsersList({input}){
     await updateDoc(collectionRef, {
       follows:arrayUnion(username)
     });
-
+    setCount(count+1)
   }
+  
   getUserName();
   useEffect(()=>{
     loadData();
     getfollowList();
-  },[input,username,follows])
+  },[input,username,count])
   return (
     <div>
-      <div > 
-        <div >
+      <div>
         {listOfUsers.map((item)=>{
           return(
             
-          <div key={item.id} >
-            <Link to={`/user/${item.id}`}>
-            <User 
-            id={item.id}
-            email={item.data().email}
-            username={item.data().username}
-            />
-            </Link>
-            <br></br>
-            {!follows.includes(item.data().username)&&
-            <button onClick={()=>addUser(item.data().username)}>
-              Seguir
-            </button>
-        }
-          </div>
-          )
-        })
-        }
-        </div>
-        <button onClick={loadMoreData}>Mas</button>
+          <div key={item.id}  className='gamesContainer' >
+            <Card  color="primary" outline>
+              <Link to={`/user/${item.id}`}>
+                <User
+                image={"default-avatar-profile.jpg"} 
+                username={item.data().username}
+                email={item.data().email}/>
+              </Link>
+              {!follows.includes(item.data().username)&&
+              <Button onClick={()=>addUser(item.data().username)}>
+                Seguir
+              </Button>}
+            </Card>
+          </div>)})}
+      </div>
+      <div className='more'>
+        <Button onClick={loadMoreData}>Mas</Button>
       </div>
     </div>
   );

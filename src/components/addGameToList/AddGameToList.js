@@ -6,7 +6,6 @@ import {auth,db} from '../../api/firebaseConfig'
 import { Alert, Button, Card, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 function AddGameToList(props){
-  const [modalState,setModalState]= useState(false);
   const [lists,setLists] = useState([])
   const [modal, setModal] = useState(false);
 

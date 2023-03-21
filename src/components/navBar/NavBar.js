@@ -26,7 +26,7 @@ function NaveBar(args){
     <>
 
       <Navbar dark="true" container ="fluid" color="dark"  expand="md" sticky="top" >
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">Games4U</NavbarBrand>
         <Nav  navbar>
         <NavItem>
             <NavLink href="/about">Sobre nosotros</NavLink>
