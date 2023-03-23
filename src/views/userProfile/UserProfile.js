@@ -18,15 +18,14 @@ function UserProfile() {
       <div>
         <UserProfileData id={id} image="default-avatar-profile.jpg"/>
       </div>
-      <div>
-      {id===undefined?(<UserGamesLists otherUser={otherUser} id={userId}/>):
-      (<UserGamesLists otherUser={otherUser} id={id}/>)}
-        
-      </div>
       {id===undefined&&
       <div>
         <CreateList/>
       </div>}
+      <div>
+      {id===undefined?(<UserGamesLists otherUser={otherUser} id={userId}/>):
+      (<UserGamesLists otherUser={otherUser} id={id}/>)}        
+      </div>
     </div>
   )
 }

@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { doc,updateDoc,deleteField } from "firebase/firestore";
 import { onAuthStateChanged } from 'firebase/auth';
+import { Button, Card, CardBody, CardTitle } from 'reactstrap';
+import GetListHeader from '../getListHeader/GetListHeader';
 function UserGamesLists({otherUser,id}){
   const [lists,setLists] = useState([])
   const [count,setCount]= useState(0)
@@ -35,28 +37,28 @@ function UserGamesLists({otherUser,id}){
     getlists();
   },[count])
 
-  
   return(
-    <div>
-      <h1>
-        {lists.map((item)=>{
+    <div className='userLists'>
+        {lists.sort().reverse().map((item)=>{
           return(
             
-            <div key ={item} className="Container">
+            <div key ={item}  >
+              <div className="headerAndName">
               <Link to={`/list/${item}/${id}`}>
-              <p>
-                {item}
-              </p>
+                <GetListHeader list={item}/>
+                <h1>{item}</h1>
               </Link>
+              </div>
+              <div>
               {!otherUser&&
-                <button className="button" onClick={()=>deleteList(item)}>
+                <Button className="buttonList" onClick={()=>deleteList(item)}>
                   Eliminar lista
-                </button>}
+                </Button>}
+                </div>
             </div>
             
           )
         })}
-      </h1>
     </div>
   )
 

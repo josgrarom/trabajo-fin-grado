@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
 import { doc,updateDoc} from "firebase/firestore";
+import { Button } from 'reactstrap';
 
 function CreateList(){
   const [newName, setNewName] = useState("");
@@ -14,14 +15,15 @@ function CreateList(){
     window.location.reload(false);
   }
   return(
-    <div>
-    <input
-    placeholder="Name..."
-    onChange={(event) => {
-      setNewName(event.target.value);
-    }}
-  />
-  <button onClick={addList}> Create List</button>
+    <div className='createList'>
+      <input
+      placeholder="Nombre"
+      onChange={(event) => {
+        setNewName(event.target.value);
+      }}/>
+    <div className='buttonCreateList'>
+      <Button onClick={addList}> Crear lista</Button>
+    </div>
   </div>
   )
 }

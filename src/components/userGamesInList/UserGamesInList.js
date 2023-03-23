@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { doc,getDoc,updateDoc,arrayRemove } from "firebase/firestore";
 import Game from "../game/Game";
 import { onAuthStateChanged } from "firebase/auth";
+import { Button } from "reactstrap";
 function UserGamesInList(){
   const {name} = useParams()
   const {user} = useParams()
@@ -70,9 +71,9 @@ function UserGamesInList(){
             platforms={item.platforms}
             />
             {currentUser===user&&
-            <button className="button" onClick={()=>deleteGame(item.steam_appid)}>
+            <Button className="button" onClick={()=>deleteGame(item.steam_appid)}>
               Eliminar Juego
-            </button>}
+            </Button>}
       
           </div>
           )
