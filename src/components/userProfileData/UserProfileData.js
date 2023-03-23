@@ -8,8 +8,8 @@ function UserProfileData({id,image}) {
   const [gamesNumber,setGamesNumber] = useState();
   const [listsNumber,setListsNumber] = useState();
   const [user,setUser]=useState();
-
-
+  const [favGame,setFavGame]=useState();
+  const [noFavGame,setNoFavGame]=useState();
 
   if(id===undefined) id = auth.currentUser.uid
   const getGames= async ()=>{
@@ -36,6 +36,8 @@ function UserProfileData({id,image}) {
     const docRef = doc(db, "users", auth.currentUser.uid);
     const docSnap = await getDoc(docRef);
     setUser(docSnap.data().username)
+    setFavGame(docSnap.data().favGame)
+    setNoFavGame(docSnap.data().noFavGame)
   }
 
   getGames();
@@ -47,22 +49,32 @@ function UserProfileData({id,image}) {
   },[])
   return(
     <div>
-      <div className='userData'>
-        
-        {<img
-          src={require(`/src/images/${image}`)}
-          alt=''/>}
-
-        <h3>{user}</h3>
-        <div className='userDescription'>
-          <p>Descripción Descripción Descripción Descripción Descripción
-          Descripción Descripción Descripción Descripción Descripción Descripción
-          Descripción Descripción Descripción Descripción Descripción Descripción Descripción
-          Descripción Descripción
-          </p>
+      <div className='dataAndStats'>
+        <div className='userData'>
+          <div className='imgUser'>
+          {<img
+            src={require(`/src/images/${image}`)}
+            alt=''/>}
+          </div>  
+          <h3>{user}</h3>
+          <div className='userDescription'>
+            <p>Descripción Descripción Descripción Descripción Descripción
+            Descripción Descripción Descripción Descripción Descripción Descripción
+            Descripción Descripción Descripción Descripción Descripción Descripción Descripción
+            Descripción Descripción
+            </p>
+          </div>
         </div>
-      <p>Juegos registrados= {gamesNumber}</p>
-      <p>Listas creadas = {listsNumber}</p>
+        <div className='userStats'>
+          <div className='block1'>
+            <p>Juegos registrados : {gamesNumber}</p>
+            <p>Listas creadas : {listsNumber}</p>
+          </div>
+          <div className='block2'>
+            <p>Juegos favorito : {favGame}</p>
+            <p>Juegos mas desagradado : {noFavGame}</p>
+          </div>
+        </div>
       </div>
     </div>
   )

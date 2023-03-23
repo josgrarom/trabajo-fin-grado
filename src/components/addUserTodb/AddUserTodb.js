@@ -11,6 +11,9 @@ function AddUserTodb(){
     await setDoc(collectionRef, {
       username:newUserName,
       email:user.email,
+      description:null,
+      favGame:null,
+      noFavGame:null,
       follows:[]
     });
     window.location.reload(false);

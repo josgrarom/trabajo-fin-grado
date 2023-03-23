@@ -96,6 +96,10 @@ body {
   max-width: 500px;
 }
 
+.gameButtons{
+  padding-top: 10px;
+}
+
 .tables{
   float: left;
 }
@@ -129,11 +133,11 @@ body {
   padding: 15px;
   border-style: solid;
   width: 750px;
-  height: 299px;
+  height: 325px;
   border-width: 1px;
   border-radius: 2%;
   overflow: auto;
-  margin-bottom: 13px;
+  margin-bottom: 16px;
 }
 
 .description h2{
@@ -146,7 +150,7 @@ body {
   padding: 15px;
   border-style: solid;
   width: 750px;
-  height: 299px;
+  height: 325px;
   border-width: 1px;
   border-radius: 2%;
   overflow: auto;
@@ -227,24 +231,35 @@ font-weight: bold;
 
 }
 
-.userData{
-  border-width: 1px;
+.dataAndStats{
+  display: flex;
+  margin: 0 auto;
   border-style: solid;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+
+}
+.userData{
   width: 400px;
-  margin-left: 20px;
+  margin-left: 30px;
+}
+
+.userData h3{
+  text-align: center;
+  padding-bottom: 10px;
+}
+.imgUser{
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.userData h3{
-
-  text-align: center;
-}
-.userData img {
-  height: auto;
+.imgUser img{
+  padding-top: 20px;
+  padding-bottom: 20px;
   width: 200px;
-
-
+  height: auto;
 }
 
 .userDescription{
@@ -252,10 +267,41 @@ font-weight: bold;
   background-color:silver;
   border-width: 1px;
   border-style: solid;
-  height: 300px;
+  height: 200px;
   overflow: auto;
   word-wrap: break-word;
   word-break: break-all;
   padding: 10px;
   margin: 0;
+}
+
+.userStats{
+  font-size: 120%;
+  font-weight: bold;
+  display: flex;
+  background-color: gray;
+
+  width: 800px;
+  height: 250px;
+  margin-top: 100px;
+  margin-left: 70px;
+}
+
+.block1{
+  width: 400px;
+  padding: 20px;
+  border-style: solid;
+  border-top: 0px;
+  border-left: 0px;
+  border-bottom: 0px;
+}
+
+.block2{
+
+  padding: 20px;
+  border-style: solid;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  
 }

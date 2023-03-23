@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from "react";
-import { collection, query, where, getDocs,doc,getDoc } from "firebase/firestore";
-import {db} from '../../api/firebaseConfig'
+import { collection, query, where, getDocs,doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
+import {auth, db} from '../../api/firebaseConfig'
 import { useParams } from "react-router-dom";
 import CreateReview from "../createReview/CreateReview";
 import ShowReviews from "../showReviews/ShowReviews";
 import CreateRating from "../createRating/createRating";
 import parse from 'html-react-parser';
-import { Card, CardHeader, CardTitle, ListGroup, ListGroupItem } from "reactstrap";
-
+import { Button, Card, CardHeader, CardTitle, ListGroup, ListGroupItem } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 function GameDetails(){
 
   const [averageRating,setAverageRating]=useState()
@@ -15,8 +16,55 @@ function GameDetails(){
   const [gameId,setGameId]=useState('3aImPGxkinxcKiEgtJ1a')
   const {id} = useParams()
   const [listOfGames,setListOfGames]=useState([]);
+  const [gameName,setGameName]=useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [isdisLiked, setIsDisLiked] = useState(false);
+  const [userFavGame,setUserFavGame]=useState();
+  const [userNoFavGame,setUserNoFavGame]=useState();
+  const setFavGame = async(gameName)=>{
+    const user = auth.currentUser;
+    const collectionRef = doc(db, "users",user.uid);
 
+    if(userFavGame===gameName){
+    await updateDoc(collectionRef, {
+      favGame:null,
+    });
+    }else{
+    await updateDoc(collectionRef, {
+      favGame:gameName,
+    });
+  }
+    setIsLiked(!isLiked);
+  }
+
+  const setNoFavGame = async(gameName)=>{
+    const user = auth.currentUser;
+    const collectionRef = doc(db, "users",user.uid);
+    if(userNoFavGame===gameName){
+      await updateDoc(collectionRef, {
+        noFavGame:null,
+      });
+      }else{
+      await updateDoc(collectionRef, {
+        noFavGame:gameName,
+      });
+    }
+    setIsDisLiked(!isdisLiked);
+  }
   
+  const getUserData = async()=>{
+    const docRef = doc(db, "users", auth.currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    setUserFavGame(docSnap.data().favGame)
+    setUserNoFavGame(docSnap.data().noFavGame)
+     if (docSnap.data().favGame===gameName){
+      setIsLiked(true)
+     }
+      if(docSnap.data().noFavGame===gameName){
+        setIsDisLiked(true)
+      }
+  }
+
   const getGame= async()=>{
     const aux =[]
     const q = query(collection(db, "games"), where('steam_appid','==',parseInt(id)))
@@ -24,7 +72,10 @@ function GameDetails(){
     querySnapshot.forEach((doc) => {
       aux.push(doc)
       setGameId(doc.id)
-
+      aux.map((item)=>{
+        setGameName(item.data().name)
+  
+      })
     });
     setListOfGames(aux)
   }
@@ -50,6 +101,7 @@ function GameDetails(){
   useEffect(()=>{
     getGame();
     getAverageListRating();
+    getUserData();
   },[averageRating])
 
   return (
@@ -65,8 +117,17 @@ function GameDetails(){
             <div className="imgAndName">
             <Card style={{ backgroundColor: 'rgba(255, 255, 255, 0.01)',  border: 'none' }}>
               <img  src={item.data().header_image} style={{border: '1px solid ' }}alt=''/>
-              <CardTitle tag="h3">{item.data().name}</CardTitle>
+                
+                <CardTitle tag="h3">{item.data().name}</CardTitle>
+                <div className="gameFavButtons">
+                <Button  onClick={()=>setFavGame(item.data().name)}color="link">
+                    <FontAwesomeIcon className="fa-2x" icon={faThumbsUp} color={isLiked ? 'green' : 'black'} />
+                  </Button>
+                  <Button onClick={()=>setNoFavGame(item.data().name)}color="link">
+                    <FontAwesomeIcon className="fa-2x" icon={faThumbsDown} color={isdisLiked ? 'red' : 'black'} />
+                  </Button>
 
+                </div>
               <div className="score">
                 <CreateRating gameId={item.id}/>
                 <p>Puntuación media <strong>{averageRating}</strong></p>
