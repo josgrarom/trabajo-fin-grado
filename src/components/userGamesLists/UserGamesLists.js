@@ -42,10 +42,10 @@ function UserGamesLists({otherUser,id}){
         {lists.sort().reverse().map((item)=>{
           return(
             
-            <div key ={item}  >
+            <div key ={item}  className="userlistsContainer">
               <div className="headerAndName">
               <Link to={`/list/${item}/${id}`}>
-                <GetListHeader list={item}/>
+                <GetListHeader idUser={id}list={item}/>
                 <h1>{item}</h1>
               </Link>
               </div>

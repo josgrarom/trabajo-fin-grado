@@ -2,7 +2,7 @@ import { updatePassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import {auth} from '../../api/firebaseConfig'
-function ChangePassword(){
+function ChangeUsername(){
 const user = auth.currentUser;
 const [modal, setModal] = useState(false);
 const [newPassword, setNewPassword] = useState("");
@@ -22,7 +22,7 @@ return(
     <div>
 
       <Button  onClick={toggle}>
-        Cambiar Contraseña
+        Cambiar Nombre de usuario
       </Button>
 
     <Modal isOpen={modal} toggle={toggle}>
@@ -45,4 +45,4 @@ return(
 )
 
 }
-export default ChangePassword;
+export default ChangeUsername;

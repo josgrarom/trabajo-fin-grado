@@ -1,5 +1,6 @@
 import {deleteUser } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
+import { Button } from "reactstrap";
 import {auth,db} from '../../api/firebaseConfig'
 function DeleteUser(){
 const user = auth.currentUser;
@@ -15,7 +16,9 @@ deleteUser(user).then(() => {
 }
 return(
   <>
-  <button onClick={deleteAccount}>Borrar cuenta</button>
+    <div>
+      <Button onClick={deleteAccount}>Borrar cuenta</Button>
+    </div>
   </>
 )
 

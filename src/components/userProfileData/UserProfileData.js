@@ -3,15 +3,15 @@ import { doc,getDoc } from 'firebase/firestore';
 import { auth,db } from '../../api/firebaseConfig';
 import CreateDescription from '../createDescription/CreateDescription';
 
-function UserProfileData({id,image}) {
+function UserProfileData({id,image,otherUser}) {
 /*   const user = auth.currentUser; */
 
-  const [gamesNumber,setGamesNumber] = useState();
-  const [listsNumber,setListsNumber] = useState();
+  const [gamesNumber,setGamesNumber] = useState(0);
+  const [listsNumber,setListsNumber] = useState(0);
   const [user,setUser]=useState();
   const [favGame,setFavGame]=useState();
   const [noFavGame,setNoFavGame]=useState();
-  const [description,setDescription]=useState();
+  const [description,setDescription]=useState("");
   if(id===undefined) id = auth.currentUser.uid
   const getGames= async ()=>{
     let aux = 0
@@ -29,24 +29,21 @@ function UserProfileData({id,image}) {
   const getLists= async ()=>{
     const docRef = doc(db, "users", id);
     const docSnap = await getDoc(docRef);
+    if(docSnap.data().listas!==undefined){
     const lists = Object.keys(docSnap.data().listas)
-    setListsNumber(lists.length)
-  }
-
-  const getUser = async()=>{
-    const docRef = doc(db, "users", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
+    setListsNumber(lists.length)}
     setUser(docSnap.data().username)
     setFavGame(docSnap.data().favGame)
     setNoFavGame(docSnap.data().noFavGame)
     setDescription(docSnap.data().description)
   }
 
-  getGames();
-  getLists();
+
+
+  if(listsNumber!==0)  getGames();
   
   useEffect(()=>{
-    getUser();
+    getLists();
 
   },[])
   return(
@@ -62,7 +59,7 @@ function UserProfileData({id,image}) {
           <div className='userDescription'>
             <p>{description}</p>
           </div>
-          <CreateDescription description={description}/>
+          <CreateDescription otherUser={otherUser} description={description}/>
         </div>
         <div className='userStats'>
           <div className='block1'>

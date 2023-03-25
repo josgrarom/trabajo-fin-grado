@@ -3,7 +3,7 @@ import {auth,db} from '../../api/firebaseConfig'
 import { addDoc, collection,where,getDocs,query,updateDoc,doc, getDoc} from "firebase/firestore";
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-function CreateDescription({description}){
+function CreateDescription({description,otherUser}){
   const [newDescription, setNewDescription] = useState("");
   const [modal, setModal] = useState(false);
 
@@ -21,10 +21,10 @@ function CreateDescription({description}){
   }
   return(
     <div className='descriptionButton'>
+      {!otherUser&&
       <Button  onClick={toggle}>
         Cambiar
-      </Button>
-
+      </Button>}
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Descripción</ModalHeader>
         <ModalBody style={{height:'150px'}}>

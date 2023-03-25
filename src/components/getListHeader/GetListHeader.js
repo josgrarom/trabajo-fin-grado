@@ -2,8 +2,8 @@ import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firesto
 import React, { useEffect, useState } from 'react';
 import { auth, db } from '../../api/firebaseConfig';
 
-function GetListHeader({list}){
-  const user= auth.currentUser.uid
+function GetListHeader({list,idUser}){
+  const user= idUser
   const [gamesImg,setGamesImg]= useState([])
   const getGames= async(lista)=>{
     const docRef = doc(db, "users", user);
