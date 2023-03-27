@@ -14,7 +14,8 @@ function AddUserTodb(){
       description:null,
       favGame:null,
       noFavGame:null,
-      follows:[]
+      follows:[],
+      image:null,
     });
     window.location.reload(false);
   }

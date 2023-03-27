@@ -3,7 +3,8 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
-
+import 'firebase/storage';
+import { getStorage } from 'firebase/storage';
 export const firebaseConfig = firebase.initializeApp({
   apiKey: "AIzaSyA_kFEbFOHhb33A7KB5DrCswOMmjKIAf3o",
   authDomain: "trabajo-fin-grado-4f454.firebaseapp.com",
@@ -18,3 +19,4 @@ export const firebaseConfig = firebase.initializeApp({
 export const db = getFirestore();
 export const auth = getAuth();
 export const database = getDatabase();
+export const storage = getStorage();

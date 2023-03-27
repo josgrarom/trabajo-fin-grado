@@ -1,21 +1,22 @@
 import { updatePassword } from 'firebase/auth';
+import { doc, updateDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
-import {auth} from '../../api/firebaseConfig'
+import {auth, db} from '../../api/firebaseConfig'
 function ChangeUsername(){
 const user = auth.currentUser;
 const [modal, setModal] = useState(false);
-const [newPassword, setNewPassword] = useState("");
+const [newUserName, setNewUserName] = useState("");
 const toggle = () => {setModal(!modal);
-  setNewPassword("");
+  setNewUserName("");
 }
-const changePassword = ()=>{
-updatePassword(user, newPassword).then(() => {
+const setUserName = async()=>{
+  const user = auth.currentUser;
+  const collectionRef = doc(db, "users/",user.uid);
+  await updateDoc(collectionRef, {
+    username:newUserName
+  });
   window.location.reload(false);
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});
 }
 return(
   <>
@@ -26,16 +27,16 @@ return(
       </Button>
 
     <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Cambiar contraseña</ModalHeader>
+        <ModalHeader toggle={toggle}>Cambiar nombre de usuario</ModalHeader>
         <ModalBody style={{height:'150px'}}>
           <Input
-            placeholder="Nueva contraseña"
+            placeholder="Nueva username"
             onChange={(event) => {
-              setNewPassword(event.target.value);
+              setNewUserName(event.target.value);
             }}/>
         </ModalBody>
         <ModalFooter>
-          <Button  disabled={newPassword.trim().length <= 0} onClick={changePassword}>
+          <Button  disabled={newUserName.trim().length <= 0} onClick={setUserName}>
           Confirmar 
           </Button>
         </ModalFooter>

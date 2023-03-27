@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { doc,getDoc } from 'firebase/firestore';
-import { auth,db } from '../../api/firebaseConfig';
+import { auth,db, storage } from '../../api/firebaseConfig';
 import CreateDescription from '../createDescription/CreateDescription';
+import { getDownloadURL, ref } from 'firebase/storage';
 
-function UserProfileData({id,image,otherUser}) {
+function UserProfileData({id,otherUser}) {
 /*   const user = auth.currentUser; */
 
   const [gamesNumber,setGamesNumber] = useState(0);
   const [listsNumber,setListsNumber] = useState(0);
   const [user,setUser]=useState();
   const [favGame,setFavGame]=useState();
+  const [image,setImage]=useState();
   const [noFavGame,setNoFavGame]=useState();
   const [description,setDescription]=useState("");
   if(id===undefined) id = auth.currentUser.uid
@@ -36,6 +38,12 @@ function UserProfileData({id,image,otherUser}) {
     setFavGame(docSnap.data().favGame)
     setNoFavGame(docSnap.data().noFavGame)
     setDescription(docSnap.data().description)
+
+    const imageRef = ref(storage, "userImages/"+ id+"/"+docSnap.data().image);
+
+    getDownloadURL(imageRef).then((url) => {
+      setImage(url)
+    });
   }
 
 
@@ -52,7 +60,7 @@ function UserProfileData({id,image,otherUser}) {
         <div className='userData'>
           <div className='imgUser'>
           {<img
-            src={require(`/src/images/${image}`)}
+            src={image}
             alt=''/>}
           </div>  
           <h3>{user}</h3>

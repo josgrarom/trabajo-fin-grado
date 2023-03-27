@@ -370,3 +370,72 @@ font-weight: bold;
 
   padding-bottom: 25px;
 }
+
+.userPersonalData{
+
+}
+
+.imgUserPersonalData{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+.imgUserPersonalData img{
+
+  height: 300px;
+  width: 370px;
+}
+
+.changeImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.userName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+
+  margin-bottom: 20px;
+}
+
+.userName h3{
+
+  padding-right: 20px;
+}
+
+.userEmail{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.userButtons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  margin-top: 20px;
+
+}
+
+.buttonChange{
+
+  padding-right: 20px;
+}
+
+.confirmButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}

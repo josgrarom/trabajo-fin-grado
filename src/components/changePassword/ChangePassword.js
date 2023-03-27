@@ -13,10 +13,10 @@ const changePassword = ()=>{
 updatePassword(user, newPassword).then(() => {
   window.location.reload(false);
 }).catch((error) => {
-  // An error ocurred
-  // ...
+  console.log(error)
 });
 }
+console.log(newPassword)
 return(
   <>
     <div>

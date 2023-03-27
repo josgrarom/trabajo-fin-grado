@@ -16,7 +16,7 @@ function UserProfile() {
       {id===undefined&&
       <Userbar/>}
       <div>
-        <UserProfileData otherUser={otherUser} id={id} image="default-avatar-profile.jpg"/>
+        <UserProfileData otherUser={otherUser} id={id} />
       </div>
       {id===undefined&&
       <div>
