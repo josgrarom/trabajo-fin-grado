@@ -3,7 +3,7 @@ import {auth,db} from '../../api/firebaseConfig'
 import { addDoc, collection,where,getDocs,query,updateDoc,doc, getDoc} from "firebase/firestore";
 import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-function CreateReview({gameId,gameN}){
+function CreateReview({gameId,gameN,gameIm}){
   const [newReview, setNewReview] = useState("");
   const [username,setUsername]=useState();
   const [modal, setModal] = useState(false);
@@ -29,6 +29,7 @@ function CreateReview({gameId,gameN}){
       await addDoc(collectionRef, {
         game:gameId,
         gameName:gameN,
+        gameImage:gameIm,
         user:user.uid,
         username:username,
         review:reviw

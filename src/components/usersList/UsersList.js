@@ -97,12 +97,12 @@ function UsersList({input}){
             <Card  color="primary" outline>
               <Link to={`/user/${item.id}`}>
                 <User
-                image={"default-avatar-profile.jpg"} 
+                id={item.id}
                 username={item.data().username}
                 email={item.data().email}/>
               </Link>
-              {!follows.includes(item.data().username)&&
-              <Button onClick={()=>addUser(item.data().username)}>
+              {!follows.includes(item.id)&&
+              <Button onClick={()=>addUser(item.id)}>
                 Seguir
               </Button>}
             </Card>

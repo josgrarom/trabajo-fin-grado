@@ -2,6 +2,7 @@ import React, { useEffect,useState } from "react";
 import { collection, query, where, getDocs,getDoc } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
 import { doc,deleteDoc } from "firebase/firestore";
+import { Button } from "reactstrap";
 function ReviewsUserList(){
   const [listOfReviews,setListOfReviews]=useState([]);
   const [count,setCount]= useState(0)
@@ -32,24 +33,25 @@ function ReviewsUserList(){
   return (
     <div>
       
-      <div className='authenticatedHome'> 
-        <div className='searchContainer'>
           {
         listOfReviews.map((item)=>{
           return(
-            <div key={item.id}>
-            <p>usuaro={item.data().user}</p>
-            <p>review={item.data().review}</p>
-            <p>juego={item.data().gameName}</p>
-            {item.data().user===auth.currentUser.uid&&
-            <button className="button" onClick={()=>deleteReview(item.id)}>
-              Eliminar review
-            </button>}
+            <div key={item.id} className="reviewUserContainer">
+              <div className="reviewIMGandName">
+                <img  src={item.data().gameImage} alt=''/>
+                <h3>{item.data().gameName}</h3>
+              </div>
+              <div className='reviewUserDesc'>
+                <p>{item.data().review}</p>
+
+              </div>
+              {item.data().user===auth.currentUser.uid&&
+                <Button className="button" onClick={()=>deleteReview(item.id)}>
+                  Eliminar review
+                </Button>}
           </div>
           )
         })}
-        </div>
-      </div>
       
     </div>
   );

@@ -371,9 +371,6 @@ font-weight: bold;
   padding-bottom: 25px;
 }
 
-.userPersonalData{
-
-}
 
 .imgUserPersonalData{
   display: flex;
@@ -438,4 +435,47 @@ font-weight: bold;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+}
+
+.reviewUserContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #2A2A2A;
+  padding: 10px;
+  margin: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.reviewIMGandName{
+
+  text-align: center;
+  margin-right: 10px;
+}
+.reviewIMGandName h3{
+
+  color: white;
+}
+.reviewIMGandName img{
+
+  width: 300px;
+
+}
+.reviewUserDesc{
+  
+  color: black;
+  background-color:silver;
+  border-width: 1px;
+  border-style: solid;
+  height: 190px;
+  width: 900px;
+  overflow: auto;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10px;
+  margin: 0;
+  margin-right: 10px;
 }

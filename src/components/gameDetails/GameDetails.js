@@ -173,7 +173,7 @@ function GameDetails(){
             <div className="reviewForm">
               <h2>Opiniones de los jugadores</h2>
                 
-                <CreateReview gameId={item.id} gameN={item.data().name}/>
+                <CreateReview gameId={item.id} gameN={item.data().name} gameIm={item.data().header_image}/>
               </div>
                 <ShowReviews gameId={item.id}/>
             </div>
