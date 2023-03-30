@@ -10,7 +10,6 @@ function ReviewsList(){
       <Userbar/>
     </div>
     <div>
-      <h1>Reviews</h1>
       <ReviewsUserList/>
     </div>
     </>

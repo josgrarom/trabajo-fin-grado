@@ -479,3 +479,63 @@ font-weight: bold;
   margin: 0;
   margin-right: 10px;
 }
+
+.loginContainer{
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+
+.emailContainer{
+
+  padding-bottom: 20px;
+}
+.emailContainer input{
+
+  margin-left: 10px;
+}
+
+.passwordContainer input{
+
+  margin-left: 10px;
+}
+.passwordContainer{
+
+  padding-bottom: 20px;
+}
+
+.homeText{
+  margin-top: 70px;
+  margin-bottom: 25px;
+  min-height: 200px;
+  margin-inline: 200px;
+  width:3000px;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 13px 1px rgb(0 0 0 / 9%);
+}
+
+.featuresContainer{
+  margin-top: 25px;
+  min-height: 300px;
+  margin-inline: 70px;
+  width:3000px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 13px 1px rgb(0 0 0 / 9%);
+}
+
+.homeDescription{
+  text-align: justify;
+  padding: 20px;
+}
+
+.homeTitle{
+
+  padding-top: 20px;
+}

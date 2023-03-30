@@ -10,7 +10,6 @@ function Follows(){
       <Userbar/>
     </div>
     <div>
-      <h1>Follows</h1>
       <UserFollows/>
     </div>
     </>

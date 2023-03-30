@@ -22,7 +22,7 @@ function GetListHeader({list,idUser}){
   useEffect(()=>{
     getGames(list);
 
-  },[])
+  },[gamesImg.length])
   
 return(
   <>   

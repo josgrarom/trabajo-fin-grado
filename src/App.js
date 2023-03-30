@@ -39,6 +39,7 @@ function App() {
       <Routes>
         <Route exact path='/'  element={user ? (userName?<AuthenticatedHome/>: <SetUserName/>) : <Home />}/>
         <Route exact path='/user-profile' element={user ? (userName?<UserProfile/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
+        <Route exact path='/about' element={<Home/>}/>
         <Route exact path='/list/:name/:user' element={user ? (userName?<UserGamesInList/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/game/:id' element={user ? (userName?<GameDetails/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>
         <Route exact path='/user/:id' element={user ? (userName?<UserProfile user={user.uid}/>: <SetUserName/>) : <SignUp setUser={setUser}/>}/>

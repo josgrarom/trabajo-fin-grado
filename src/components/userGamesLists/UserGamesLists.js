@@ -36,7 +36,6 @@ function UserGamesLists({otherUser,id}){
   useEffect(()=>{
     getlists();
   },[count])
-
   return(
     <div className='userLists'>
         {lists.sort().reverse().map((item)=>{
