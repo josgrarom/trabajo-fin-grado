@@ -93,7 +93,7 @@ function UsersList({input}){
         {listOfUsers.map((item)=>{
           return(
             
-          <div key={item.id}  className='gamesContainer' >
+          <div key={item.id}  className='gamesContainer'>
             <Card  color="primary" outline>
               <Link to={`/user/${item.id}`}>
                 <User
@@ -101,10 +101,10 @@ function UsersList({input}){
                 username={item.data().username}
                 email={item.data().email}/>
               </Link>
-              {!follows.includes(item.id)&&
+              {!follows.includes(item.id)?(
               <Button onClick={()=>addUser(item.id)}>
                 Seguir
-              </Button>}
+              </Button>):(<Button disabled >Seguir</Button>)}
             </Card>
           </div>)})}
       </div>

@@ -11,6 +11,7 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
+  Alert,
 } from 'reactstrap';
 
 import { auth } from '../../api/firebaseConfig';
@@ -19,11 +20,19 @@ import {firebaseConfig} from '../../api/firebaseConfig'
 function NaveBar(){
   const user = auth.currentUser;
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setVisible(false)
+    setModal(!modal);
+  }
   const [modal2, setModal2] = useState(false);
-  const toggle2 = () => setModal2(!modal2);
+  const toggle2 = () => {
+    setVisible(false)
+    setModal2(!modal2);
+  }
 
+  const [visible, setVisible] = useState(false);
 
+  const onDismiss = () => setVisible(false);
   const loginUser= (email,password)=>{
     firebaseConfig
     .auth()
@@ -31,6 +40,8 @@ function NaveBar(){
     .then((firebaseUser)=>{
       console.log("usuario logueado:",firebaseUser.user.email);
       window.location.reload(false);
+    }).catch(() =>{
+      setVisible(true)
     })
 };
 
@@ -50,6 +61,8 @@ const createUser =(email,password)=>{
     .then((firebaseUser)=>{
       console.log("usuario creado:",firebaseUser);
       window.location.reload(false);
+    }).catch((error) =>{
+      setVisible(true)
     })
   );
 };
@@ -63,7 +76,7 @@ const submitHandler2= (e)=>{
 
   return (
     <>
-      <Navbar dark="true" container ="fluid" color="dark"  expand="md" sticky="top" >
+      <Navbar dark container ="fluid" color="dark"  expand="md" sticky="top" >
         <NavbarBrand href="/">Games4U</NavbarBrand>
          {user&&
         <Nav  navbar>
@@ -93,7 +106,12 @@ const submitHandler2= (e)=>{
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Iniciar sesión</ModalHeader>
         <ModalBody>
+          
         <div className='loginContainer'>
+
+        <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+          Correo o contraseña incorrectos.
+        </Alert>
           <form onSubmit={submitHandler}>
             <div className='emailContainer'>
               <label htmlFor="emailField">Email</label>
@@ -113,6 +131,10 @@ const submitHandler2= (e)=>{
         <ModalHeader toggle={toggle2}>Registrate</ModalHeader>
         <ModalBody>
         <div className='loginContainer'>
+
+        <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+          Ya tienes un usuario con este correo.
+        </Alert>
           <form onSubmit={submitHandler2}>
             <div className='emailContainer'>
               <label htmlFor="emailField">Email</label>
@@ -120,7 +142,7 @@ const submitHandler2= (e)=>{
             </div>
             <div className='passwordContainer'>
               <label htmlFor="passwordField">Contraseña</label>
-              <input type="password" id="passwordField"/>
+              <input type="password" id="passwordField" minLength={8}/>
             </div>
             <Button type="submit">Registrate</Button>
           </form>

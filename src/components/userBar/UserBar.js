@@ -4,13 +4,10 @@ import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 function Userbar(){
   return (
     <>
-      <Navbar light="true"className="navbar-transparente"  container ="fluid"  expand="md" >
+      <Navbar light className="navbar-transparente"  container ="fluid"  expand="md" >
         <Nav className="navbarUser" navbar>
           <NavItem>
             <NavLink href='/profile'>Perfil</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href='/profileData'>Datos personales</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href='/gamesList'>Juegos</NavLink>
@@ -20,6 +17,9 @@ function Userbar(){
           </NavItem>
           <NavItem>
             <NavLink href='/reviewsList'>Reviews</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='/profileData'>Ajustes</NavLink>
           </NavItem>
         </Nav>
       </Navbar>

@@ -28,10 +28,10 @@ function User(props){
             alt=''
           />}
           <CardTitle  className='gameName'>
-            <p>{props.username}</p>
+            <p>Username: {props.username}</p>
           </CardTitle>
           <CardTitle  className='gameName'>
-            <p>{props.email}</p>
+            <p>Email: {props.email}</p>
           </CardTitle>
       </Card>
       </div>

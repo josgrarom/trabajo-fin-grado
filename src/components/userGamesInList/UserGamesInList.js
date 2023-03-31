@@ -20,6 +20,7 @@ function UserGamesInList(){
       [`listas.${name}`]:arrayRemove(idGame),
       games:arrayRemove(idGame)
     });
+    if(listOfGames.length===1) window.location.reload(false);
     setCount(count+1)
   }
 

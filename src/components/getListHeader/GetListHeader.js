@@ -29,7 +29,7 @@ return(
   <div className='headerContainer'>
   {gamesImg.map((item)=>{
     return(
-    <div className='gameHeader'>
+    <div key={item}className='gameHeader'>
       <img
       className='gameImg2'
       src={item}

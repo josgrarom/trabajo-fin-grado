@@ -17,21 +17,30 @@ import PersonalData from './views/userProfile/PersonalData';
 import GamesLibrary from './views/userProfile/GamesLibrary';
 import ReviewsList from './views/userProfile/ReviewsList';
 import FindUsers from './views/findUsers/FindUsers';
+import { Spinner } from 'reactstrap';
 function App() {
   const[user,setUser] = React.useState(null);
   const[userName,setUserName] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   useEffect( ()=>{
     
     firebaseConfig.auth().onAuthStateChanged(async (firebaseUser)=>{
       setUser(firebaseUser);
+      setLoading(false);
       const docRef = doc(db, "users",firebaseUser.uid );
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setUserName(true);
+        
       }
+      
     })
+    
   },[user])
+ 
+  if (loading) {
+    return <Spinner />;
+  }
   return(
   <>
   <Router>

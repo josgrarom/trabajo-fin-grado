@@ -3,17 +3,16 @@ import {auth,db} from '../../api/firebaseConfig'
 import { arrayRemove, getDoc } from "firebase/firestore";
 import { useEffect } from 'react';
 import { doc,updateDoc } from "firebase/firestore";
-import { onAuthStateChanged } from 'firebase/auth';
 import { Button, Card } from 'reactstrap';
 import User from '../user/User';
 import { Link } from 'react-router-dom';
-import { async } from '@firebase/util';
 function UserFollows(){
 
   const [follows,setFollows] = useState([])
   const [count,setCount]= useState(0)
   
   const deleteFollow =  async (follow)=>{
+    if(follows.length===1) window.location.reload(false);
     const user = auth.currentUser;
     const collectionRef = doc(db, "users/",user.uid);
     await updateDoc(collectionRef, {
@@ -38,7 +37,7 @@ function UserFollows(){
 
 
   }
-
+ 
   useEffect(()=>{
     getFollows();
   },[count,follows.length])
