@@ -14,6 +14,9 @@ function SignUp(props) {
       window.location.reload(false);
       })
     );
+
+
+    
   };
 
   const submitHandler= (e)=>{

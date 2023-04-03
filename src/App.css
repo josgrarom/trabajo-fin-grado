@@ -380,7 +380,8 @@ font-weight: bold;
 
 }
 .imgUserPersonalData img{
-
+  border-width: 1px;
+  border-style: solid;
   height: 300px;
   width: 370px;
 }

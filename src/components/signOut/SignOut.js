@@ -2,9 +2,14 @@ import { Button } from 'reactstrap';
 import {firebaseConfig} from '../../api/firebaseConfig';
 
 function SignOut(){
+
+  const cerrarSesion =()=>{
+    firebaseConfig.auth().signOut()
+    window.location.reload(false);
+  }
   return(      
   <div>
-    <Button size="sm" color="danger" onClick={()=>firebaseConfig.auth().signOut()}>Cerrar sesión</Button>
+    <Button size="sm" color="danger" onClick={()=>cerrarSesion()}>Cerrar sesión</Button>
   </div>);
 }
 

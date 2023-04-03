@@ -152,7 +152,8 @@ function GameDetails(){
                     Plataformas
                   </CardHeader>
                   <ListGroup flush>
-                    {Object.keys(item.data().platforms).map((platform)=>{
+                    {
+                    Object.keys(item.data().platforms).sort().map((platform)=>{
                       return(
                         <>
                           <ListGroupItem>{platform}</ListGroupItem>

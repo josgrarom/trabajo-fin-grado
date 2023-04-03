@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {auth,db} from '../../api/firebaseConfig'
-import {addDoc,doc, setDoc} from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 function AddUserTodb(){
   const [newUserName, setUserNewName] = useState("");
@@ -21,13 +22,17 @@ function AddUserTodb(){
   }
   return(
     <div>
-    <input
-    placeholder="Name..."
-    onChange={(event) => {
-      setUserNewName(event.target.value);
-    }}
-  />
-  <button onClick={addUser}> Nuevo nombre</button>
+        <Modal isOpen={true} >
+        <ModalHeader>Username</ModalHeader>
+        <ModalBody>
+        <div className='loginContainer'>
+          <div className='emailContainer'>
+            <input onChange={(event) => {setUserNewName(event.target.value);}}/>
+          </div>
+            <Button onClick={addUser}>Añadir username</Button>
+        </div>
+        </ModalBody>
+      </Modal>
   </div>
   )
 }

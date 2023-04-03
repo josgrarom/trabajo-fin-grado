@@ -7,7 +7,6 @@ function LogIn(props) {
       .auth()
       .signInWithEmailAndPassword(email,password)
       .then((firebaseUser)=>{
-        console.log("usuario logueado:",firebaseUser.user.email);
         props.setUser(firebaseUser)
         window.location.reload(false);
       })
