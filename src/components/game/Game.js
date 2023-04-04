@@ -1,7 +1,6 @@
-import React, {  useState } from 'react'
-import './Game.css'
+import React from 'react'
 import { Link } from 'react-router-dom';
-import { Card, CardBody, CardText, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardBody, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
 
 function Game(props){
   var generos=[]
@@ -34,7 +33,7 @@ function Game(props){
             Géneros: {generos.join(', ')}
           </ListGroupItem>
           <ListGroupItem>
-            Plataformas: {plataformas.join(', ')}
+            Plataformas: {plataformas.sort().join(', ')}
           </ListGroupItem>
         </ListGroup>
         </CardBody>

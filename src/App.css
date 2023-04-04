@@ -540,3 +540,64 @@ font-weight: bold;
 
   padding-top: 20px;
 }
+
+.featureContainer{
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.featureImg{
+  height: 100px;
+  width: auto;
+}
+
+.featureText{
+  padding: 40px;
+  font-family: Lato, sans-serif;
+}
+
+.featureName{
+  text-align: left;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.featureDescription{
+  text-align: justify;
+  margin-top: 15px;
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
+
+.gameContainer{
+  padding: 10px;
+  height: 430px;
+  width: 300px;
+}
+
+.gameName{
+  text-decoration:none;
+  font-weight: bold;
+  font-size: 20px;
+}
+.gameImg{
+  height: 150px;
+  width: auto;
+}
+
+.gamesContainer{
+  margin-top: 25px;
+  min-height: 300px;
+  margin-inline: 71px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 13px 1px rgb(0 0 0 / 9%);
+  float:left;
+
+}

@@ -5,7 +5,6 @@ import CreateList from '../../components/createList/CreateList';
 import Userbar from '../../components/userBar/UserBar';
 import UserGamesLists from '../../components/userGamesLists/UserGamesLists';
 import UserProfileData from '../../components/userProfileData/UserProfileData';
-
 function UserProfile() {
   const {id} = useParams();
   const userId = auth.currentUser.uid;

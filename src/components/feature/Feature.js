@@ -1,5 +1,5 @@
 import React from 'react'
-import './Feature.css'
+
 function Feature(props){
   return (
     <div className='featureContainer'>

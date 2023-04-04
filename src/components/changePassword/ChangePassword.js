@@ -16,7 +16,6 @@ updatePassword(user, newPassword).then(() => {
   console.log(error)
 });
 }
-console.log(newPassword)
 return(
   <>
     <div>
@@ -28,7 +27,7 @@ return(
     <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Cambiar contraseña</ModalHeader>
         <ModalBody style={{height:'150px'}}>
-          <Input
+          <Input type='password'
             placeholder="Nueva contraseña"
             onChange={(event) => {
               setNewPassword(event.target.value);

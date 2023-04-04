@@ -1,6 +1,5 @@
-import './Home.css';
-import Feature from '../../components/feature/Feature';
 
+import Feature from '../../components/feature/Feature';
 function Home() {
   return (  
     <div className='home'>

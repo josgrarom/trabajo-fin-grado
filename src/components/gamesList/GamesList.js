@@ -1,4 +1,4 @@
-import './GamesList.css';
+
 import { useEffect, useState } from 'react';
 import { collection, query, limit, where,orderBy,getDocs, startAfter } from "firebase/firestore";
 import { db} from '../../api/firebaseConfig';

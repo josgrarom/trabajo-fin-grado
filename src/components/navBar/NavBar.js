@@ -37,8 +37,7 @@ function NaveBar(){
     firebaseConfig
     .auth()
     .signInWithEmailAndPassword(email,password)
-    .then((firebaseUser)=>{
-      console.log("usuario logueado:",firebaseUser.user.email);
+    .then(()=>{
       window.location.reload(false);
     }).catch(() =>{
       setVisible(true)
@@ -58,8 +57,7 @@ const createUser =(email,password)=>{
     firebaseConfig
     .auth()
     .createUserWithEmailAndPassword(email,password)
-    .then((firebaseUser)=>{
-      console.log("usuario creado:",firebaseUser);
+    .then(()=>{
       window.location.reload(false);
     }).catch((error) =>{
       setVisible(true)
@@ -115,11 +113,11 @@ const submitHandler2= (e)=>{
           <form onSubmit={submitHandler}>
             <div className='emailContainer'>
               <label htmlFor="emailField">Email</label>
-              <input type="email" id="emailField"/>
+              <input type="email" id="emailField" required/>
             </div>
             <div className='passwordContainer'>
               <label htmlFor="passwordField">Contraseña</label>
-              <input type="password" id="passwordField"/>
+              <input type="password" id="passwordField" required/>
             </div>
             <Button type="submit">Iniciar sesión</Button>
           </form>
@@ -138,11 +136,11 @@ const submitHandler2= (e)=>{
           <form onSubmit={submitHandler2}>
             <div className='emailContainer'>
               <label htmlFor="emailField">Email</label>
-              <input type="email" id="emailField" />
+              <input type="email" id="emailField" required />
             </div>
             <div className='passwordContainer'>
               <label htmlFor="passwordField">Contraseña</label>
-              <input type="password" id="passwordField" minLength={8}/>
+              <input type="password" id="passwordField" pattern=".{6,}" required/>
             </div>
             <Button type="submit">Registrate</Button>
           </form>

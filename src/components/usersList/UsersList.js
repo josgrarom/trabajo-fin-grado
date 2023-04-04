@@ -28,7 +28,7 @@ function UsersList({input}){
   const loadData = async()=>{
     const aux =[]
     if(input===''){
-      const q=query(collection(db, "users"), limit(30),orderBy('username','asc'),where('username', '!=',username));
+      const q=query(collection(db, "users"), limit(9),orderBy('username','asc'),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -37,7 +37,7 @@ function UsersList({input}){
       const lastDo=aux[aux.length -1]
       setLastDoc(lastDo)
     }else{
-      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),where('username', '!=',username));
+      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(9),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -50,7 +50,7 @@ function UsersList({input}){
   const loadMoreData= async()=>{
     const aux =[]
     if(input===''){
-      const q=query(collection(db, "users"), limit(30),orderBy('username','asc'),startAfter(lastDoc),where('username', '!=',username));
+      const q=query(collection(db, "users"), limit(9),orderBy('username','asc'),startAfter(lastDoc),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)
@@ -60,7 +60,7 @@ function UsersList({input}){
       const lastDo=aux[aux.length -1]
       setLastDoc(lastDo)
     }else{
-      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(30),startAfter(lastDoc),where('username', '!=',username));
+      const q = query(collection(db, "users"),orderBy('username','asc'),where('username', '>=', input),where('username', '<=', input+ '\uf8ff'),limit(9),startAfter(lastDoc),where('username', '!=',username));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         aux.push(doc)

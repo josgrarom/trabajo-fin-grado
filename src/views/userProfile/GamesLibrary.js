@@ -1,7 +1,6 @@
 import React, {useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import {auth,db} from '../../api/firebaseConfig'
-
 import { doc,getDoc } from "firebase/firestore";
 import Game from "../../components/game/Game";
 import { onAuthStateChanged } from "firebase/auth";

@@ -17,7 +17,7 @@ import ReviewsList from './views/userProfile/ReviewsList';
 import FindUsers from './views/findUsers/FindUsers';
 import { Spinner } from 'reactstrap';
 function App() {
-  const[user,setUser] = React.useState(null);
+  const[user,setUser] = useState(null);
   const[userName,setUserName] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect( ()=>{

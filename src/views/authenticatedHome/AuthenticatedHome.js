@@ -1,4 +1,3 @@
-import './AuthenticatedHome.css';
 import GamesSearcher from '../../components/gamesSearcher/GamesSearcher';
 function AuthenticatedHome() {
 
