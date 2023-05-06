@@ -16,6 +16,7 @@ import GamesLibrary from './views/userProfile/GamesLibrary';
 import ReviewsList from './views/userProfile/ReviewsList';
 import FindUsers from './views/findUsers/FindUsers';
 import { Spinner } from 'reactstrap';
+import PruebaCarga from './components/loadDB/loadDb';
 function App() {
   const[user,setUser] = useState(null);
   const[userName,setUserName] = useState(false);
@@ -58,6 +59,7 @@ function App() {
         <Route exact path='/gamesList' element={user ? (userName?<GamesLibrary/>: <SetUserName/>) : <Home/>}/>
         <Route exact path='/followsList'element={user ? (userName?<Follows/>: <SetUserName/>) : <Home/>}/>
         <Route exact path='/reviewsList'element={user ? (userName?<ReviewsList/>: <SetUserName/>) : <Home/>}/>
+        <Route exact path='/loadDB'element={<PruebaCarga/>}/>
       </Routes>
   </Router>
     
