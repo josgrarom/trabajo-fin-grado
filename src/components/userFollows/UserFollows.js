@@ -31,8 +31,9 @@ function UserFollows(){
         docSnap.data().follows.forEach(async(u) => {
           const docRef = doc(db, "users", u);
           const docSnap = await getDoc(docRef);
+          if(docSnap.data().username!==undefined){
           aux.push(docSnap)
-          setFollows(aux)
+          setFollows(aux)}
         });
 
 

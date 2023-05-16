@@ -1,21 +1,23 @@
 import {deleteUser } from "firebase/auth";
 import { doc, deleteDoc } from "firebase/firestore";
 import { useState } from "react";
-import { Button, Input, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Alert, Button, Modal, ModalBody, ModalHeader } from "reactstrap";
 import {auth,db} from '../../api/firebaseConfig'
 function DeleteUser(){
 const user = auth.currentUser;
 const [modal, setModal] = useState(false);
+const onDismiss = () => setVisible(false);
+const [visible, setVisible] = useState(false);
 const toggle = () => {setModal(!modal);
 
 }
-const deleteAccount= async()=>{
-await deleteDoc(doc(db, "users", user.uid));
-deleteUser(user).then(() => {
-  
+const deleteAccount= ()=>{
+
+deleteUser(user).then(async() => {
+  await deleteDoc(doc(db, "users", user.uid));
 }).catch((error) => {
-  // An error ocurred
-  // ...
+  setVisible(true)
+  console.log(error)
 });
 }
 return(
@@ -25,7 +27,10 @@ return(
 
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>¿Seguro que quieres borrar la cuenta?</ModalHeader>
-        <ModalBody style={{height:'150px'}}>
+        <ModalBody style={{height:'190px'}}>
+        <Alert color="danger" isOpen={visible} toggle={onDismiss}>
+          Es necesario que vuelva a iniciar sesión si quiere borrar su cuenta
+        </Alert>
           <div className="confirmButton">
           <Button color="danger" onClick={deleteAccount}>Borrar cuenta</Button>
           </div>
